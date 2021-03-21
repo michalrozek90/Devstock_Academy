@@ -1,0 +1,127 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "system-ui", sans-serif;
+}
+
+/* HEADER START */
+
+.nav {
+  background-color: #e9967a;
+}
+
+.nav a {
+  color: #fff;
+  text-decoration: none;
+  line-height: 4vh;
+}
+
+.nav a:nth-child(1) {
+  margin: 0 75vw 0 1vw;
+}
+
+.nav a:nth-child(1):hover {
+  color: lightgrey;
+}
+
+.nav a:nth-child(2) {
+  margin-right: 10px;
+}
+
+header {
+  height: 35vh;
+  background-image: url(https://www.incimages.com/uploaded_files/image/1920x1080/getty_548298907_9706479704500126_78156.jpg);
+  color: #e9967a;
+}
+
+header h1 {
+  font-size: 3em;
+  padding: 5vw 0 0 5vw;
+}
+
+/* HEADER END */
+
+/* MAIN START */
+
+main {
+  margin: 5vh 5vw;
+  text-align: center;
+}
+main h3:nth-child(2) {
+  color: #888;
+}
+main h4 {
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+main h2,
+main h3,
+main h4 {
+  margin-bottom: 30px;
+}
+
+main div {
+  display: inline-block;
+  padding: 10px;
+  margin-left: 50px;
+  background-color: #faf0e6;
+  max-width: 25%;
+  transition: 0.2s;
+}
+
+main div:hover {
+  transform: scale(1.1);
+  outline: 1px solid lightslategray;
+}
+
+/* MAIN END */
+
+/* FOOTER START */
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  height: 40vh;
+  background-color: #e9967a;
+}
+
+footer div {
+  width: 30%;
+  margin: 20px;
+}
+
+#aboutus p {
+  margin-top: 15px;
+}
+
+footer img {
+  height: 60%;
+  margin-top: 140px;
+}
+
+footer li {
+  list-style: none;
+  margin-top: 10px;
+}
+
+footer input {
+  padding: 5px;
+}
+
+footer button {
+  width: 100px;
+  height: 40px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+footer button:hover {
+  opacity: 0.8;
+}
+
+/* FOOTER END */
