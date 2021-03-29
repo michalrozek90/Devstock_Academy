@@ -9,7 +9,7 @@
 /* Main site color, border-radius & font  */
 :root {
   --MainColor: #413fb5;
-  --BorderRadius: 7px;
+  --BorderRadius: 15%;
   font-family: "system-ui", sans-serif;
 }
 
@@ -37,7 +37,7 @@ a {
 
 /* Main settings for border radius */
 :is(.main-container, .social-container, input, button) {
-  border-radius: 7px;
+  border-radius: var(--BorderRadius);
 }
 
 /* GLOBAL SETTINGS END */
@@ -48,6 +48,7 @@ a {
   border: 1px solid rgba(0, 0, 0, 0.7);
   box-shadow: 0px 0px 7px rgba(100, 96, 106, 0.2);
   margin-top: 40px;
+  overflow: hidden;
 }
 
 .right-container {
