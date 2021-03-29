@@ -9,7 +9,7 @@
 /* Main site color, border-radius & font  */
 :root {
   --MainColor: #413fb5;
-  --BorderRadius: 15%;
+  --BorderRadius: 7px;
   font-family: "system-ui", sans-serif;
 }
 
