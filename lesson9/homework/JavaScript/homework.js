@@ -144,8 +144,8 @@ function lastLetter(z) {
   return "z";
 }
 // c)
-function booleanFalse(wrongAnswer) {
-  return false;
+function showBoolean(bool) {
+  return bool;
 }
 // d)
 function modulo2(firstNumber, secondNumber) {
