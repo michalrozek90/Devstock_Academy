@@ -141,7 +141,7 @@ function sum(firstNumber, secondNumber) {
 }
 // b)
 function lastLetter(z) {
-  return "z";
+  return z;
 }
 // c)
 function showBoolean(bool) {
