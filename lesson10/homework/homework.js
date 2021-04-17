@@ -58,8 +58,8 @@ const presidentSAMCRO = {
   age: 35,
 };
 
-function showName() {
-  return presidentSAMCRO.firstName;
+function showName(obj) {
+  return obj.firstName;
 }
 
 // f)
