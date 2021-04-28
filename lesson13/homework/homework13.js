@@ -19,7 +19,7 @@ function showCar2(brand, model, productionYear) {
 const { brand, model, productionYear } = car1;
 
 // 3
-function showCar3({ brand, model, productionYear } = car1) {
+function showCar3({ brand, model, productionYear }) {
   return `Nasz samochód to ${brand} ${model} a wyprodukowany został w roku ${productionYear}`;
 }
 
