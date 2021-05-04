@@ -319,4 +319,3 @@ function addNewElement(arr, newElement) {
     ? console.log(`Element ${newElement} znajduje się już w tej tablicy`)
     : console.log(arr.push(newElement), arr);
 }
-// poprawić wszystkie `i <= length (powinno być "<")
