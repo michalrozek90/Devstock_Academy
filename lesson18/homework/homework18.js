@@ -138,17 +138,25 @@ function sortByRentalsNumber(a, b) {
     : -1;
 }
 
-let carsSortedByMostRented = [...rentalCarCompany];
-carsSortedByMostRented.sort(sortByRentalsNumber);
+const result = rentalCarCompany
+  .sort(sortByRentalsNumber)
+  .filter(function (par1, index) {
+    return index < 3;
+  });
 
-console.log(`Trzy najczęściej wypożyczane auta to:
+// let carsSortedByMostRented = [...rentalCarCompany];
+// carsSortedByMostRented.sort(sortByRentalsNumber);
 
-1) ${carsSortedByMostRented[0].name} - w liczbie ${
-  carsSortedByMostRented[0].allCarsNumber - carsSortedByMostRented[0].carsToRent
-},
-2) ${carsSortedByMostRented[1].name} - w liczbie ${
-  carsSortedByMostRented[1].allCarsNumber - carsSortedByMostRented[1].carsToRent
-},
-3) ${carsSortedByMostRented[2].name} - w liczbie ${
-  carsSortedByMostRented[2].allCarsNumber - carsSortedByMostRented[2].carsToRent
-},`);
+console.log(`Trzy najczęściej wypożyczane auta to:`);
+console.dir(result);
+
+// console.log(`Trzy najczęściej wypożyczane auta to:
+// 1) ${carsSortedByMostRented[0].name} - w liczbie ${
+//   carsSortedByMostRented[0].allCarsNumber - carsSortedByMostRented[0].carsToRent
+// },
+// 2) ${carsSortedByMostRented[1].name} - w liczbie ${
+//   carsSortedByMostRented[1].allCarsNumber - carsSortedByMostRented[1].carsToRent
+// },
+// 3) ${carsSortedByMostRented[2].name} - w liczbie ${
+//   carsSortedByMostRented[2].allCarsNumber - carsSortedByMostRented[2].carsToRent
+// },`);
