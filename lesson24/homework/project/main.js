@@ -71,6 +71,7 @@ async function main() {
   const $buttonPrev = document.getElementById("prev");
   const $buttonNext = document.getElementById("next");
 
+  // Obsługa buttonów
   $buttonPrev.addEventListener("click", async (el) => {
     if (info.prev === null) {
       alert("Jesteś na 1 stronie");
