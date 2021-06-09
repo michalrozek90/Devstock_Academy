@@ -5,26 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Homework 24 - project</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./style.css" />
   </head>
-  <body>
+  <body data-mode="light">
     <div class="wrapper">
-      <h1>Lista Rick and Morty</h1>
+      <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
+      <h1>Rick and Morty list</h1>
       <h3>
-        Wszystkich dostępnych postaci jest <span id="characters-number"></span>
+        There are <span id="characters-number"></span> available characters
       </h3>
       <div class="nav">
-        <button id="prev">Poprzednia</button
+        <button id="prev">Previous</button
         ><span class="arrow arrow-left"></span>
         <h4>
-          Aktualna strona to <span id="actual-page"></span> na
+          Actual page is <span id="actual-page"></span> in
           <span id="pages-number"></span>
         </h4>
-        <button id="next">Następna</button
-        ><span class="arrow arrow-right"></span>
+        <button id="next">Next</button><span class="arrow arrow-right"></span>
       </div>
       <div id="list"></div>
     </div>
     <script src="./main.js"></script>
+    <script src="./myFeatures.js"></script>
   </body>
 </html>
