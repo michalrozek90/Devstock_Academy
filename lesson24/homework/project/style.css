@@ -33,7 +33,7 @@ body {
   animation: gradient 30s ease infinite;
 }
 
-/* BGC animation */
+/* BACKGROUND animation */
 @keyframes gradient {
   0% {
     background-position: 0% 50%;
