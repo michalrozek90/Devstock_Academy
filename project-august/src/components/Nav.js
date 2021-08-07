@@ -2,7 +2,6 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom'
 
 import { Button, Container, makeStyles } from '@material-ui/core'
-import PolymerIcon from '@material-ui/icons/Polymer'
 import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew' // O mnie
 import TimerIcon from '@material-ui/icons/Timer' // Stoper
 import ThumbUpIcon from '@material-ui/icons/ThumbUp' // Licznik
@@ -10,8 +9,9 @@ import PeopleAltIcon from '@material-ui/icons/PeopleAlt' // Lista postaci
 import PersonIcon from '@material-ui/icons/Person' // Logowanie
 import PersonAddIcon from '@material-ui/icons/PersonAdd' // Rejestracja
 
+import Logo from './Logo'
+
 const navigationLinks = [
-	{ name: '', path: '/', exact: true, icon: <PolymerIcon /> },
 	{ name: 'O mnie', path: '/', exact: true, variant: 'text', color: 'primary', icon: <AccessibilityNewIcon /> },
 	{ name: 'Stoper', path: '/stopwatch', variant: 'text', color: 'primary', icon: <TimerIcon /> },
 	{ name: 'Licznik', path: '/counter', variant: 'text', color: 'primary', icon: <ThumbUpIcon /> },
@@ -23,25 +23,23 @@ const navigationLinks = [
 const useStyles = makeStyles({
 	navBar: {
 		maxWidth: '100%',
-		position: 'fixed',
+		position: 'relative',
 		display: 'flex',
 		alignItems: 'center',
 		border: '1px solid black',
 	},
-	buttons: {
+	leftSide: {
+		display: 'flex',
+		flexBasis: '20vw',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	rightSide: {
 		display: 'flex',
 		justifyContent: 'flex-end',
 	},
 	button: {
 		padding: '20px 10px',
-		'&:nth-child(1)': {
-			color: 'green',
-		},
-	},
-
-	icon: {
-		border: '2px solid red',
-		padding: '30px',
 	},
 
 	link: {
@@ -61,13 +59,14 @@ const Nav = () => {
 	))
 
 	return (
-		<Router>
-			<Container className={classes.navBar}>
-				<Container className={classes.buttons}>
-					<ul>{menu}</ul>
-				</Container>
+		<Container className={classes.navBar}>
+			<Container className={classes.leftSide}>
+				<Logo />
 			</Container>
-		</Router>
+			<Container className={classes.rightSide}>
+				<ul>{menu}</ul>
+			</Container>
+		</Container>
 	)
 }
 
