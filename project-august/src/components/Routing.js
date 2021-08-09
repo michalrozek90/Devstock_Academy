@@ -1,18 +1,20 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
-import AboutMe from './AboutMe'
-import Stopwatch from './Stopwatch'
-import Counter from './Counter'
-import CharacterList from './CharacterList'
-import Login from './Login'
-import Registration from './Registration'
+import HomePage from '../pages/HomePage'
+import AboutMe from '../pages/AboutMe'
+import Stopwatch from '../pages/Stopwatch'
+import Counter from '../pages/Counter'
+import CharacterList from '../pages/CharacterList'
+import Login from '../pages/Login'
+import Registration from '../pages/Registration'
 
 const Routing = () => {
 	return (
 		<>
 			<Switch>
-				<Route path='/' exact component={AboutMe} />
+				<Route path='/' exact component={HomePage} />
+				<Route path='/aboutme' exact component={AboutMe} />
 				<Route path='/stopwatch' exact component={Stopwatch} />
 				<Route path='/counter' exact component={Counter} />
 				<Route path='/character-list' exact component={CharacterList} />

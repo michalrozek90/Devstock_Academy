@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 import { Button, Container, makeStyles } from '@material-ui/core'
 import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew' // O mnie
@@ -12,7 +12,7 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd' // Rejestracja
 import Logo from './Logo'
 
 const navigationLinks = [
-	{ name: 'O mnie', path: '/', exact: true, variant: 'text', color: 'primary', icon: <AccessibilityNewIcon /> },
+	{ name: 'O mnie', path: '/aboutme', exact: true, variant: 'text', color: 'primary', icon: <AccessibilityNewIcon /> },
 	{ name: 'Stoper', path: '/stopwatch', variant: 'text', color: 'primary', icon: <TimerIcon /> },
 	{ name: 'Licznik', path: '/counter', variant: 'text', color: 'primary', icon: <ThumbUpIcon /> },
 	{ name: 'Lista postaci', path: '/character-list', variant: 'text', color: 'primary', icon: <PeopleAltIcon /> },
@@ -28,18 +28,21 @@ const useStyles = makeStyles({
 		alignItems: 'center',
 		border: '1px solid black',
 	},
+
 	leftSide: {
 		display: 'flex',
 		flexBasis: '20vw',
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
+
 	rightSide: {
 		display: 'flex',
 		justifyContent: 'flex-end',
 	},
+
 	button: {
-		padding: '20px 10px',
+		padding: '15px 10px',
 	},
 
 	link: {
@@ -52,7 +55,7 @@ const Nav = () => {
 
 	const menu = navigationLinks.map(item => (
 		<NavLink className={classes.link} to={item.path}>
-			<Button className={classes.button} key={item.name} variant={item.variant} color={item.color} endIcon={item.icon}>
+			<Button className={classes.button} variant={item.variant} color={item.color} endIcon={item.icon}>
 				{item.name}
 			</Button>
 		</NavLink>
