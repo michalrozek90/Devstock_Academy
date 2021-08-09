@@ -3,6 +3,10 @@ import PolymerIcon from '@material-ui/icons/Polymer' // Logo
 import { NavLink } from 'react-router-dom'
 
 const useStyles = makeStyles({
+	MuiButtonStartIcon: {
+		margin: '0',
+		padding: '0',
+	},
 	iconContainer: {
 		display: 'flex',
 		justifyContent: 'center',
@@ -12,6 +16,11 @@ const useStyles = makeStyles({
 	},
 
 	button: {
+		MuiButtonStartIcon: {
+			margin: '0',
+			padding: '0',
+			backgroundColor: 'red',
+		},
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
