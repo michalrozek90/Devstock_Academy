@@ -23,10 +23,13 @@ const navigationLinks = [
 const useStyles = makeStyles({
 	navBar: {
 		maxWidth: '100%',
-		position: 'relative',
+		position: 'sticky',
+		top: '0',
 		display: 'flex',
 		alignItems: 'center',
-		border: '1px solid black',
+		borderBottom: '1px solid black',
+		backgroundColor: 'white',
+		zIndex: '999',
 	},
 
 	leftSide: {
@@ -54,7 +57,7 @@ const Nav = () => {
 	const classes = useStyles()
 
 	const menu = navigationLinks.map(item => (
-		<NavLink className={classes.link} to={item.path}>
+		<NavLink className={classes.link} to={item.path} key={item.name}>
 			<Button className={classes.button} variant={item.variant} color={item.color} endIcon={item.icon}>
 				{item.name}
 			</Button>

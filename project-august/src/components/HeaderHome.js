@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import bgcImage from '../img/aboutMe.jpg'
 
 const HeaderContainer = styled.div`
-	height: 60vh;
+	height: 65vh;
 	background-image: url(${bgcImage});
 	background-position: center;
 	background-size: cover;
@@ -36,10 +36,10 @@ const Header = () => {
 				<FormControl className='formularz'>
 					<Box>
 						<Typography variant={'h3'} color={'textPrimary'} style={{ color: 'white', marginBottom: '1rem' }}>
-							Join our newsletter
+							Dołącz do nas!
 						</Typography>
 						<Typography className='subik' variant={'h5'} style={{ color: 'white' }}>
-							Subscribe to our newsletter to reveive product announcements
+							Zasubskrybuj aby otrzymywać najnowsze informacje na bieżąco
 						</Typography>
 						<div>
 							<OutlinedInput
@@ -47,7 +47,7 @@ const Header = () => {
 								color={'secondary'}
 								style={{ color: 'white', width: '50%', height: '3rem', margin: '1rem' }}></OutlinedInput>
 							<Button variant={'contained'} color={'secondary'} style={{ height: '3rem' }}>
-								Subscribe now!
+								Subskrybuj teraz!
 							</Button>
 						</div>
 					</Box>

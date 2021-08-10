@@ -1,7 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { decrement, increment, reset } from '../redux/ducks/counter'
-import { Container } from '@material-ui/core'
 
 // const useStyles = makeStyles({})
 

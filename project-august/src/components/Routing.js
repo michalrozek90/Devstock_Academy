@@ -14,12 +14,12 @@ const Routing = () => {
 		<>
 			<Switch>
 				<Route path='/' exact component={HomePage} />
-				<Route path='/aboutme' exact component={AboutMe} />
-				<Route path='/stopwatch' exact component={Stopwatch} />
-				<Route path='/counter' exact component={Counter} />
-				<Route path='/character-list' exact component={CharacterList} />
-				<Route path='/login' exact component={Login} />
-				<Route path='/registration' exact component={Registration} />
+				<Route path='/aboutme' component={AboutMe} />
+				<Route path='/stopwatch' component={Stopwatch} />
+				<Route path='/counter' component={Counter} />
+				<Route path='/character-list' component={CharacterList} />
+				<Route path='/login' component={Login} />
+				<Route path='/registration' component={Registration} />
 			</Switch>
 		</>
 	)
