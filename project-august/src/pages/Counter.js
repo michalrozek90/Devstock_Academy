@@ -2,11 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { decrement, increment, reset } from '../redux/ducks/counter'
 
-// const useStyles = makeStyles({})
-
 const Counter = () => {
-	// const classes = useStyles()
-
 	const count = useSelector(state => state.counter.count)
 	const dispatch = useDispatch()
 

@@ -1,8 +1,27 @@
 import React from 'react'
-// import { Button, Container, makeStyles } from '@material-ui/core'
-import UserInfo from '../components/UserInfo'
+import styled from 'styled-components'
+import myImage from '../img/myImage.jpg'
 
-// import myImage from '../img/myImage'
+const SectionContainer = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	width: 100%;
+	background: linear-gradient(to left, #232526, #414345);
+`
+
+const ImgContainer = styled.div`
+	height: 50%;
+	width: 50%;
+	border-radius: 50%;
+	background-image: url(${myImage});
+	border: 2px solid black;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+`
+
 const userInfo = [
 	{
 		firstName: 'Michał',
@@ -13,10 +32,9 @@ const userInfo = [
 
 const AboutMe = () => {
 	return (
-		<div>
-			siemka!!!!!!!
-			<UserInfo />
-		</div>
+		<SectionContainer>
+			<ImgContainer></ImgContainer>
+		</SectionContainer>
 	)
 }
 

@@ -1,6 +1,6 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux'
-import counterReducer from '../redux/ducks/counter'
 import thunk from 'redux-thunk'
+import counterReducer from '../redux/ducks/counter'
 
 const reducers = combineReducers({
 	counter: counterReducer,
