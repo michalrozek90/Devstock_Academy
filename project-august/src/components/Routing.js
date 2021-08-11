@@ -8,13 +8,14 @@ import Counter from '../pages/Counter'
 import CharacterList from '../pages/CharacterList'
 import Login from '../pages/Login'
 import Registration from '../pages/Registration'
+import userInfo from '../constants/userInfo'
 
 const Routing = () => {
 	return (
 		<>
 			<Switch>
 				<Route path='/' exact component={HomePage} />
-				<Route path='/aboutme' component={AboutMe} />
+				<Route path='/aboutme' children={<AboutMe userInfo={userInfo} />} />
 				<Route path='/stopwatch' component={Stopwatch} />
 				<Route path='/counter' component={Counter} />
 				<Route path='/character-list' component={CharacterList} />
