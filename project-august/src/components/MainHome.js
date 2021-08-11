@@ -1,14 +1,18 @@
-import { Container, Grid, Icon, Paper, makeStyles, Typography } from '@material-ui/core'
+import { Container, Grid, Paper, makeStyles, Typography } from '@material-ui/core'
 import { NavLink } from 'react-router-dom'
 import cardsInfo from '../constants/cardsInfo'
+import styled from 'styled-components'
+
+const Icons = styled.span`
+	> svg {
+		font-size: 4rem;
+		color: #3f51b5;
+	}
+`
 
 const useStyles = makeStyles({
 	mainContainer: {
 		padding: '50px',
-	},
-	icon: {
-		width: '100px',
-		height: '100px',
 	},
 	title: {
 		textTransform: 'uppercase',
@@ -41,9 +45,7 @@ const MainHome = () => {
 		<Grid className={classes.gridItem} item key={id} xs={12} sm={6} md={4} lg={4} xl={4}>
 			<NavLink className={classes.link} to={path}>
 				<Paper className={classes.paper}>
-					<Icon style={{ border: '2px solid red' }} fontSize='large' color={'primary'}>
-						{icon}
-					</Icon>
+					<Icons>{icon}</Icons>
 					<Typography className={classes.title} color={'secondary'}>
 						{title}
 					</Typography>

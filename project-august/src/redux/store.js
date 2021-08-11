@@ -1,9 +1,11 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import counterReducer from '../redux/ducks/counter'
+import counter from '../redux/ducks/counter'
+import stopwatch from '../redux/ducks/stopwatch'
 
 const reducers = combineReducers({
-	counter: counterReducer,
+	counter,
+	stopwatch,
 })
 
 export const store = createStore(reducers, {}, applyMiddleware(thunk))

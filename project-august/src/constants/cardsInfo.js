@@ -5,12 +5,6 @@ import PeopleAltIcon from '@material-ui/icons/PeopleAlt' // Lista postaci
 import PersonIcon from '@material-ui/icons/Person' // Logowanie
 import PersonAddIcon from '@material-ui/icons/PersonAdd' // Rejestracja
 
-const styles = {
-	largeIcon: {
-		transform: 'scale(5.8)',
-	},
-}
-
 const cardsInfo = [
 	{
 		id: 1,
@@ -18,21 +12,21 @@ const cardsInfo = [
 		description: 'Poznajmy się bliżej!',
 		path: '/aboutme',
 		exact: true,
-		icon: <AccessibilityNewIcon iconStyle={styles.largeIcon} />,
+		icon: <AccessibilityNewIcon />,
 	},
 	{
 		id: 2,
 		title: 'Stoper',
 		description: 'Szczęśliwi czasu nie liczą? Nieprawda!',
 		path: '/stopwatch',
-		icon: <TimerIcon fontSize={'medium'} />,
+		icon: <TimerIcon />,
 	},
 	{
 		id: 3,
 		title: 'Licznik',
 		description: 'Chyba nawet działa!',
 		path: '/counter',
-		icon: <ThumbUpIcon fontSize={'small'} />,
+		icon: <ThumbUpIcon />,
 	},
 	{
 		id: 4,
