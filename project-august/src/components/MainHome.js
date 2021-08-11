@@ -30,6 +30,13 @@ const useStyles = makeStyles({
 		height: '90%',
 		margin: '20px',
 		textAlign: 'center',
+		boxShadow:
+			'rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset',
+
+		'&:hover': {
+			boxShadow: 'rgba(0, 0, 0, 0.2) 0px 3px 5px',
+			transition: '0.3s',
+		},
 	},
 	gridItem: {
 		// margin: '10px',

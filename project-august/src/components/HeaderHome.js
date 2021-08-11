@@ -1,4 +1,4 @@
-import { Button, FormControl, OutlinedInput, Typography } from '@material-ui/core'
+import { Button, FormControl, OutlinedInput, TextField, Typography } from '@material-ui/core'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -33,7 +33,7 @@ const Header = () => {
 	return (
 		<HeaderContainer>
 			<FormContainer>
-				<FormControl className='formularz'>
+				<FormControl>
 					<Box>
 						<Typography variant={'h3'} color={'textPrimary'} style={{ color: 'white', marginBottom: '1rem' }}>
 							Dołącz do nas!
