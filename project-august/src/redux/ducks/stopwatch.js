@@ -1,5 +1,6 @@
 // CONSTANTS
-const ADD_TIME = 'addTime'
+const ADD_MILISECONDS = 'addMiliseconds'
+const ADD_SECONDS = 'addSeconds'
 const RESET = 'reset'
 const SET_TIME = 'setTime'
 const SET_COUNT = 'setCount'
@@ -8,8 +9,12 @@ const TOGGLE = 'toggle'
 
 // ACTIONS
 
-export const addTime = () => ({
-	type: ADD_TIME,
+export const addMiliseconds = () => ({
+	type: ADD_MILISECONDS,
+})
+
+export const addSeconds = () => ({
+	type: ADD_MILISECONDS,
 })
 
 export const reset = () => ({
@@ -34,9 +39,9 @@ export const toggle = () => ({
 
 const initialState = {
 	time: {
-		hours: 1,
-		minutes: 3,
-		seconds: 5,
+		hours: 0,
+		minutes: 0,
+		seconds: 0,
 		miliSeconds: 0,
 	},
 	count: 1,
@@ -46,21 +51,22 @@ const initialState = {
 // REDUCER
 const stopwatchActions = (state = initialState, action) => {
 	switch (action.type) {
-		case ADD_TIME:
-			return { ...state, time: state.time.miliSeconds + 1 }
+		case ADD_MILISECONDS:
+			return { ...state, time: { ...state.time, miliSeconds: state.time.miliSeconds + 1 } }
+		case ADD_SECONDS:
+			return { ...state, time: { ...state.time, seconds: state.time.seconds + 1 } }
 		case RESET:
 			return {
 				...state,
-				count: (state.count = initialState.count),
 				time: (state.time = initialState.time),
 				isActive: false,
 			}
-		case SET_TIME:
-			return { ...state, time: (state.time = 0) }
-		case SET_COUNT:
-			return { ...state, count: (state.count = 0) }
-		case INCREMENT_AMOUNT:
-			return { ...state, count: (state.count += action.payload) }
+		// case SET_TIME:
+		// 	return { ...state, time: (state.time = 0) }
+		// case SET_COUNT:
+		// 	return { ...state, count: (state.count = 0) }
+		// case INCREMENT_AMOUNT:
+		// 	return { ...state, count: (state.count += action.payload) }
 		case TOGGLE:
 			return { ...state, isActive: !state.isActive }
 		default:

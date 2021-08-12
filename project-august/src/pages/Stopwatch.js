@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addTime, reset, toggle, setTime, setCount, incrementAmount, selectCount } from '../redux/ducks/stopwatch'
 import { useEffect, useState } from 'react'
+import { addMiliseconds, addSeconds, reset, toggle } from '../redux/ducks/stopwatch'
 
 const Stopwatch = () => {
 	const dispatch = useDispatch()
@@ -11,7 +11,7 @@ const Stopwatch = () => {
 
 	const [incrementAmount, setIncrementAmount] = useState('1')
 
-	const incrementValue = Number(incrementAmount) || 0
+	// const incrementValue = Number(incrementAmount) || 0
 
 	// const [hour, setHours] = useState(0)
 	// const [minute, setMinutes] = useState(0)
@@ -62,12 +62,15 @@ const Stopwatch = () => {
 	// }, [handleClick])
 
 	useEffect(() => {
+		console.log(startTime)
 		let interval = null
 		if (active) {
-			console.log('inside useEffect', startTime)
 			interval = setInterval(() => {
-				if (startTime.miliSeconds < 99) {
-					dispatch(addTime())
+				if (startTime.miliSeconds >= 99) {
+					console.log('SECOND ADDED')
+					dispatch(addSeconds())
+				} else if (startTime.miliSeconds < 99) {
+					dispatch(addMiliseconds())
 				}
 			}, 10)
 		}
@@ -79,9 +82,9 @@ const Stopwatch = () => {
 	return (
 		<div style={{ textAlign: 'center', marginTop: '25%' }}>
 			<h2>
-				{/* <span>{hour >= 10 ? hour : '0' + hour} : </span> */}
-				{/* <span>{minute >= 10 ? minute : '0' + minute} : </span> */}
-				{/* <span>{second >= 10 ? second : '0' + second} : </span> */}
+				<span>{startTime.hours >= 10 ? startTime.hours : '0' + startTime.hours} : </span>
+				<span>{startTime.minutes >= 10 ? startTime.minutes : '0' + startTime.minutes} : </span>
+				<span>{startTime.seconds >= 10 ? startTime.seconds : '0' + startTime.seconds} : </span>
 				<span>
 					{startTime.miliSeconds >= 10 || startTime.miliSeconds > 100
 						? startTime.miliSeconds
