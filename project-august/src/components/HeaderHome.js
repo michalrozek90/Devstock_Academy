@@ -43,7 +43,7 @@ const Header = () => {
 						</Typography>
 						<div>
 							<OutlinedInput
-								placeholder={'Enter your email'}
+								placeholder={'Wprowadź email'}
 								color={'secondary'}
 								style={{ color: 'white', width: '50%', height: '3rem', margin: '1rem' }}></OutlinedInput>
 							<Button variant={'contained'} color={'secondary'} style={{ height: '3rem' }}>
