@@ -129,7 +129,6 @@ const stopwatchActions = (state = initialState, action) => {
 				time: {
 					...state.time,
 					miliSeconds: (state.time.miliSeconds = action.payload),
-					seconds: 0,
 				},
 			}
 
@@ -163,6 +162,12 @@ const stopwatchActions = (state = initialState, action) => {
 		case RESET:
 			return {
 				...initialState,
+				time: {
+					miliSeconds: 0,
+					seconds: 0,
+					minutes: 0,
+					hours: 0,
+				},
 			}
 
 		case TOGGLE:

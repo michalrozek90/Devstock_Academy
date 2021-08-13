@@ -9,7 +9,7 @@ import { CardActionArea, makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles({
 	root: {
-		marginTop: 20,
+		margin: '20px, 10px',
 		boxShadow:
 			'rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;',
 	},
@@ -23,6 +23,9 @@ const useStyles = makeStyles({
 	header: {
 		height: '4rem',
 	},
+	content: {
+		fontSize: '12px',
+	},
 })
 
 const CharacterCard = ({ name, status, species, img, id }) => {
@@ -33,10 +36,10 @@ const CharacterCard = ({ name, status, species, img, id }) => {
 				<CardHeader className={classes.header} avatar={<Avatar>{id}</Avatar>} title={name} />
 				<CardMedia className={classes.media} image={img} title={name} />
 				<CardContent>
-					<Typography variant='overline' color='primary' component='p'>
+					<Typography className={classes.content} variant='overline' color='primary' component='p'>
 						Status: {status}
 					</Typography>
-					<Typography variant='overline' color='secondary' component='p'>
+					<Typography className={classes.content} variant='overline' color='secondary' component='p'>
 						Species: {species}
 					</Typography>
 				</CardContent>

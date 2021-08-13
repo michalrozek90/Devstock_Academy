@@ -9,6 +9,7 @@ import CharacterList from '../pages/CharacterList'
 import Login from '../pages/Login'
 import Registration from '../pages/Registration'
 import userInfo from '../constants/userInfo'
+import Topics from '../pages/Topics'
 
 const Routing = () => {
 	return (
@@ -21,6 +22,7 @@ const Routing = () => {
 				<Route path='/character-list' component={CharacterList} />
 				<Route path='/login' component={Login} />
 				<Route path='/registration' component={Registration} />
+				<Route path='/topics' component={Topics} />
 			</Switch>
 		</>
 	)
