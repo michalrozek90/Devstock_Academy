@@ -29,7 +29,9 @@ const Stopwatch = () => {
 	}
 
 	const onReset = () => {
+		console.log('stan PRZED resetem : ', startTime)
 		dispatch(reset())
+		console.log('stan PO resecie : ', startTime)
 	}
 
 	const handleCount = e => {
@@ -51,9 +53,23 @@ const Stopwatch = () => {
 		}
 	}
 
+	console.log('stan na zewnątrz funkcji : ', startTime)
+
 	const handleStart = e => {
-		console.log(e.target.value)
-		dispatch(startMiliseconds(e.target.value))
+		let value = e.target.value
+		let number = parseInt(value)
+
+		if (e.target.placeholder === 'start miliseconds') {
+			dispatch(startMiliseconds(number))
+		} else if (e.target.placeholder === 'start seconds') {
+			dispatch(startSeconds(number))
+		} else if (e.target.placeholder === 'start minutes') {
+			dispatch(startMinutes(number))
+		} else if (e.target.placeholder === 'start hours') {
+			dispatch(startHours(number))
+		}
+
+		console.log('Wewnątrz, na koncu funkcji : ', startTime)
 	}
 
 	useEffect(() => {
@@ -91,18 +107,9 @@ const Stopwatch = () => {
 			<input type='number' placeholder='seconds' onChange={handleCount} />
 			<input type='number' placeholder='miliseconds' onChange={handleCount} />
 			<br />
-			{/* <TextField
-				placeholder='start hours'
-				type='number'
-				onChange={e => dispatch(startHours(e.target.value))}></TextField>
-			<TextField
-				placeholder='start minutes'
-				type='number'
-				onChange={e => dispatch(startMinutes(e.target.value))}></TextField>
-			<TextField
-				placeholder='start seconds'
-				type='number'
-				onChange={e => dispatch(startSeconds(e.target.value))}></TextField> */}
+			<TextField placeholder='start hours' type='number' onChange={handleStart}></TextField>
+			<TextField placeholder='start minutes' type='number' onChange={handleStart}></TextField>
+			<TextField placeholder='start seconds' type='number' onChange={handleStart}></TextField>
 			<TextField placeholder='start miliseconds' type='number' onChange={handleStart}></TextField>
 		</div>
 	)
