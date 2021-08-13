@@ -56,7 +56,7 @@ const MainHome = () => {
 	))
 
 	return (
-		<Container className={classes.kontener}>
+		<Container>
 			<Grid container className={classes.mainContainer}>
 				{tiles}
 			</Grid>
