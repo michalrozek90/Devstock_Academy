@@ -80,9 +80,9 @@ const Stopwatch = () => {
 					dispatch(addHours())
 				} else if (seconds > 59) {
 					dispatch(addMinutes())
-				} else if (miliSeconds >= 99) {
-					dispatch(addSeconds())
-				} else if (miliSeconds < 99) {
+				} else if (miliSeconds > 99) {
+					dispatch(addSeconds(miliSeconds - 100))
+				} else if (miliSeconds < 100) {
 					dispatch(addMiliseconds())
 				}
 			}, 10)
@@ -98,7 +98,7 @@ const Stopwatch = () => {
 				<span>{hours >= 10 ? hours : '0' + hours} : </span>
 				<span>{minutes >= 10 ? minutes : '0' + minutes} : </span>
 				<span>{seconds >= 10 ? seconds : '0' + seconds} : </span>
-				<span>{miliSeconds >= 10 || miliSeconds > 100 ? miliSeconds : '0' + miliSeconds}</span>
+				<span>{miliSeconds >= 10 ? miliSeconds : '0' + miliSeconds}</span>
 			</h2>
 			<button onClick={handleClick}>{!active ? 'Start' : 'Stop'}</button>
 			<button onClick={onReset}>Reset</button>

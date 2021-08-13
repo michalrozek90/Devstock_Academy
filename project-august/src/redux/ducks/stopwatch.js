@@ -15,8 +15,9 @@ export const addMiliseconds = () => ({
 	type: ADD_MILISECONDS,
 })
 
-export const addSeconds = () => ({
+export const addSeconds = remainingMiliSeconds => ({
 	type: ADD_SECONDS,
+	remainingMiliSeconds,
 })
 
 export const addMinutes = () => ({
@@ -91,15 +92,22 @@ const initialState = {
 const stopwatchActions = (state = initialState, action) => {
 	switch (action.type) {
 		case ADD_MILISECONDS:
-			return { ...state, time: { ...state.time, miliSeconds: state.time.miliSeconds + 1 } }
+			return {
+				...state,
+				time: {
+					...state.time,
+					miliSeconds: state.time.miliSeconds + state.count.setMiliSeconds,
+				},
+			}
 
 		case ADD_SECONDS:
+			console.log('remaining : ', action.remainingMiliSeconds)
 			return {
 				...state,
 				time: {
 					...state.time,
 					seconds: state.time.seconds + state.count.setSeconds,
-					miliSeconds: 0,
+					miliSeconds: action.remainingMiliSeconds,
 				},
 			}
 
@@ -108,7 +116,7 @@ const stopwatchActions = (state = initialState, action) => {
 				...state,
 				time: {
 					...state.time,
-					minutes: state.time.minutes + 1,
+					minutes: state.time.minutes + state.count.setMinutes,
 					seconds: 0,
 				},
 			}
@@ -118,7 +126,7 @@ const stopwatchActions = (state = initialState, action) => {
 				...state,
 				time: {
 					...state.time,
-					hours: state.time.hours + 1,
+					hours: state.time.hours + state.count.setHours,
 					minutes: 0,
 				},
 			}

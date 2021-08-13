@@ -4,43 +4,33 @@ import CharacterCard from '../components/CharacterCard'
 
 const CharacterList = () => {
 	const [cards, setCards] = useState(null)
-	const [isLoading, setIsLoading] = useState(true)
+	const [isLoading, setIsLoading] = useState(false)
 	const [page, setPage] = useState(1)
 
-	const API = `https://rickandmortyapi.com/api/character/?page=${page}`
-
-	const getData = async () => {
-		try {
-			const response = await fetch(API)
-			const data = await response.json()
-			setCards(data)
-			setIsLoading(false)
-			// console.log(data)
-		} catch (err) {
-			console.log(err)
-		}
-	}
-
 	const handlePage = async e => {
-		console.log(cards.info)
-		if (e.target.outerText === 'POPRZEDNIA') {
-			if (cards.info.prev === null) {
-				return alert('jesteś na pierwszej stronie')
-			} else {
-				setPage(page - 1)
-			}
-		} else if (e.target.outerText === 'NASTĘPNA') {
-			if (cards.info.next === null) {
-				return alert('jesteś na ostatniej stronie')
-			} else {
-				setPage(page + 1)
-			}
+		if (e.target.outerText === 'PREV') {
+			setPage(page - 1)
+		} else if (e.target.outerText === 'NEXT') {
+			setPage(page + 1)
 		}
+		console.log('current page is ' + page)
 	}
 
 	useEffect(() => {
+		async function getData() {
+			try {
+				setIsLoading(true)
+				const response = await fetch(`https://rickandmortyapi.com/api/character/?page=${page}`)
+				const data = await response.json()
+				setCards(data)
+				setIsLoading(false)
+				console.log(data)
+			} catch (err) {
+				console.log(err)
+			}
+		}
 		getData()
-	}, [handlePage])
+	}, [page])
 
 	return (
 		<>
@@ -53,13 +43,23 @@ const CharacterList = () => {
 					</div>
 				)}
 			</Container>
-			<Button onClick={handlePage} variant={'outlined'} color={'primary'}>
-				Poprzednia
-			</Button>
-			<Button onClick={handlePage} variant={'outlined'} color={'secondary'}>
-				Następna
-			</Button>
+			{cards && (
+				<div>
+					<Button
+						onClick={handlePage}
+						variant={cards.info.prev === null || isLoading ? 'disabled' : 'outlined'}
+						color={'primary'}>
+						PREV
+					</Button>
 
+					<Button
+						onClick={handlePage}
+						variant={cards.info.next === null || isLoading ? 'disabled' : 'outlined'}
+						color={'secondary'}>
+						NEXT
+					</Button>
+				</div>
+			)}
 			<Container>
 				<Grid container spacing={3}>
 					{cards &&
