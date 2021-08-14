@@ -9,7 +9,7 @@ import CharacterList from '../pages/CharacterList'
 import Login from '../pages/Login'
 import Registration from '../pages/Registration'
 import userInfo from '../constants/userInfo'
-import Topics from '../pages/Topics'
+import CharacterDetails from '../pages/CharacterDetails'
 
 const Routing = () => {
 	return (
@@ -19,10 +19,10 @@ const Routing = () => {
 				<Route path='/aboutme' children={<AboutMe userInfo={userInfo} />} />
 				<Route path='/stopwatch' component={Stopwatch} />
 				<Route path='/counter' component={Counter} />
-				<Route path='/character-list' component={CharacterList} />
+				<Route path='/character-list' exact component={CharacterList} />
+				<Route path='/character-list/:name/:id' children={<CharacterDetails />} />
 				<Route path='/login' component={Login} />
 				<Route path='/registration' component={Registration} />
-				<Route path='/topics' component={Topics} />
 			</Switch>
 		</>
 	)

@@ -37,13 +37,16 @@ const useStyles = makeStyles({
 	link: {
 		textDecoration: 'none',
 	},
+	activeLink: {
+		// color: "green"
+	},
 })
 
 const Nav = () => {
 	const classes = useStyles()
 
 	const menu = navigationButtons.map(item => (
-		<NavLink className={classes.link} to={item.path} key={item.name}>
+		<NavLink activeClassName={classes.activeLink} className={classes.link} to={item.path} key={item.name}>
 			<Button className={classes.button} variant={item.variant} color={item.color} endIcon={item.icon}>
 				{item.name}
 			</Button>

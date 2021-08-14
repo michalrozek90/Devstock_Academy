@@ -30,14 +30,16 @@ const CharacterList = () => {
 				<div>
 					<Button
 						onClick={handlePage}
-						variant={data.info.prev === null || isLoading ? 'disabled' : 'outlined'}
+						variant={'outlined'}
+						disabled={data.info.prev === null || isLoading ? true : false}
 						color={'primary'}>
 						POPRZEDNIA
 					</Button>
 
 					<Button
 						onClick={handlePage}
-						variant={data.info.next === null || isLoading ? 'disabled' : 'outlined'}
+						variant={'outlined'}
+						disabled={data.info.next === null || isLoading ? true : false}
 						color={'secondary'}>
 						NASTĘPNA
 					</Button>
@@ -51,7 +53,7 @@ const CharacterList = () => {
 							const { name, status, species, image, id } = card
 
 							return (
-								<Grid item key={id} xs={12} sm={6} md={3} lg={3} xl={2}>
+								<Grid item xs={12} sm={6} md={3} lg={3} xl={2}>
 									<CharacterCard name={name} status={status} species={species} img={image} id={id} key={id} />
 								</Grid>
 							)

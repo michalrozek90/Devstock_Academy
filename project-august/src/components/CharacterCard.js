@@ -6,6 +6,7 @@ import CardContent from '@material-ui/core/CardContent'
 import Avatar from '@material-ui/core/Avatar'
 import Typography from '@material-ui/core/Typography'
 import { CardActionArea, makeStyles } from '@material-ui/core'
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles({
 	root: {
@@ -31,20 +32,22 @@ const useStyles = makeStyles({
 const CharacterCard = ({ name, status, species, img, id }) => {
 	const classes = useStyles()
 	return (
-		<Card className={classes.root}>
-			<CardActionArea>
-				<CardHeader className={classes.header} avatar={<Avatar>{id}</Avatar>} title={name} />
-				<CardMedia className={classes.media} image={img} title={name} />
-				<CardContent>
-					<Typography className={classes.content} variant='overline' color='primary' component='p'>
-						Status: {status}
-					</Typography>
-					<Typography className={classes.content} variant='overline' color='secondary' component='p'>
-						Species: {species}
-					</Typography>
-				</CardContent>
-			</CardActionArea>
-		</Card>
+		<Link to={`/character-list/${name}/${id}`} species={species}>
+			<Card className={classes.root}>
+				<CardActionArea>
+					<CardHeader className={classes.header} avatar={<Avatar>{id}</Avatar>} title={name} />
+					<CardMedia className={classes.media} image={img} title={name} />
+					<CardContent>
+						<Typography className={classes.content} variant='overline' color='primary' component='p'>
+							Status: {status}
+						</Typography>
+						<Typography className={classes.content} variant='overline' color='secondary' component='p'>
+							Species: {species}
+						</Typography>
+					</CardContent>
+				</CardActionArea>
+			</Card>
+		</Link>
 	)
 }
 
