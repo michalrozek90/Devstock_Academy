@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Container, Grid, Button } from '@material-ui/core'
 import CharacterCard from '../components/CharacterCard'
+import useFetch from '../components/useFetch'
 
 const CharacterList = () => {
-	const [cards, setCards] = useState(null)
-	const [isLoading, setIsLoading] = useState(false)
 	const [page, setPage] = useState(1)
+	const { data, isLoading, error } = useFetch(`https://rickandmortyapi.com/api/character/?page=${page}`)
 
 	const handlePage = async e => {
 		if (e.target.outerText === 'POPRZEDNIA') {
@@ -15,43 +15,29 @@ const CharacterList = () => {
 		}
 	}
 
-	useEffect(() => {
-		async function getData() {
-			try {
-				setIsLoading(true)
-				const response = await fetch(`https://rickandmortyapi.com/api/character/?page=${page}`)
-				const data = await response.json()
-				setCards(data)
-				setIsLoading(false)
-			} catch (err) {
-				console.log('błąd! ', err)
-			}
-		}
-		getData()
-	}, [page])
-
 	return (
 		<>
 			<Container>
-				{cards && <div>Ogólna liczba postaci: {cards.info.count}</div>}
-				{cards && (
+				{error && <h1>{error}</h1>}
+				{data && <div>Ogólna liczba postaci: {data.info.count}</div>}
+				{data && (
 					<div>
-						Obecna strona: {page} z {cards.info.pages}
+						Obecna strona: {page} z {data.info.pages}
 					</div>
 				)}
 			</Container>
-			{cards && (
+			{data && (
 				<div>
 					<Button
 						onClick={handlePage}
-						variant={cards.info.prev === null || isLoading ? 'disabled' : 'outlined'}
+						variant={data.info.prev === null || isLoading ? 'disabled' : 'outlined'}
 						color={'primary'}>
 						POPRZEDNIA
 					</Button>
 
 					<Button
 						onClick={handlePage}
-						variant={cards.info.next === null || isLoading ? 'disabled' : 'outlined'}
+						variant={data.info.next === null || isLoading ? 'disabled' : 'outlined'}
 						color={'secondary'}>
 						NASTĘPNA
 					</Button>
@@ -60,8 +46,8 @@ const CharacterList = () => {
 			{isLoading && <p>Loading...</p>}
 			<Container>
 				<Grid container spacing={3}>
-					{cards &&
-						cards.results.map(card => {
+					{data &&
+						data.results.map(card => {
 							const { name, status, species, image, id } = card
 
 							return (
