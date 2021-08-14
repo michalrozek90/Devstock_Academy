@@ -1,7 +1,7 @@
 // CONSTANTS
 const INCREMENT = 'increment'
 const DECREMENT = 'decrement'
-const RESET = 'reset'
+const RESET_COUNTER = 'resetCounter'
 const ADD_USER = 'addUser'
 
 // ACTIONS
@@ -18,8 +18,8 @@ export const decrement = () => ({
 	type: DECREMENT,
 })
 
-export const reset = () => ({
-	type: RESET,
+export const resetCounter = () => ({
+	type: RESET_COUNTER,
 })
 
 const initialState = {
@@ -37,8 +37,8 @@ const counterActions = (state = initialState, action) => {
 			return { ...state, count: state.count + 1 }
 		case DECREMENT:
 			return { ...state, count: state.count - 1 }
-		case RESET:
-			return { ...state, count: (state.count = initialState.count), isLoading: true }
+		case RESET_COUNTER:
+			return { ...initialState }
 		default:
 			return state
 	}

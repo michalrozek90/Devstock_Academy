@@ -8,12 +8,11 @@ const CharacterList = () => {
 	const [page, setPage] = useState(1)
 
 	const handlePage = async e => {
-		if (e.target.outerText === 'PREV') {
+		if (e.target.outerText === 'POPRZEDNIA') {
 			setPage(page - 1)
-		} else if (e.target.outerText === 'NEXT') {
+		} else if (e.target.outerText === 'NASTĘPNA') {
 			setPage(page + 1)
 		}
-		console.log('current page is ' + page)
 	}
 
 	useEffect(() => {
@@ -24,9 +23,8 @@ const CharacterList = () => {
 				const data = await response.json()
 				setCards(data)
 				setIsLoading(false)
-				console.log(data)
 			} catch (err) {
-				console.log(err)
+				console.log('błąd! ', err)
 			}
 		}
 		getData()
@@ -35,7 +33,6 @@ const CharacterList = () => {
 	return (
 		<>
 			<Container>
-				{isLoading && <p>Loading...</p>}
 				{cards && <div>Ogólna liczba postaci: {cards.info.count}</div>}
 				{cards && (
 					<div>
@@ -49,17 +46,18 @@ const CharacterList = () => {
 						onClick={handlePage}
 						variant={cards.info.prev === null || isLoading ? 'disabled' : 'outlined'}
 						color={'primary'}>
-						PREV
+						POPRZEDNIA
 					</Button>
 
 					<Button
 						onClick={handlePage}
 						variant={cards.info.next === null || isLoading ? 'disabled' : 'outlined'}
 						color={'secondary'}>
-						NEXT
+						NASTĘPNA
 					</Button>
 				</div>
 			)}
+			{isLoading && <p>Loading...</p>}
 			<Container>
 				<Grid container spacing={3}>
 					{cards &&

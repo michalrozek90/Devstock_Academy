@@ -18,6 +18,8 @@ export const addMiliseconds = () => ({
 export const addSeconds = remainingMiliSeconds => ({
 	type: ADD_SECONDS,
 	remainingMiliSeconds,
+	// To jest logika która pozwala przechowywać nadwyżkę czasu i przekazywać ją jako stan początkowy do następnego odliczania
+	// Nie chciało mi się robić tego dla reszty :-]
 })
 
 export const addMinutes = () => ({
