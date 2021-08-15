@@ -13,36 +13,24 @@ const useStyles = makeStyles(theme => ({
 	selectEmpty: {
 		marginTop: theme.spacing(2),
 	},
+	disabled: {
+		borderBottom: '2px solid black',
+	},
 }))
 
 const FilterSelect = ({ handleFilterStatus, filterStatus }) => {
 	const classes = useStyles()
 
-	console.log('filter status : ', filterStatus)
-
-	const selectFilters = [
-		{ id: 1, name: 'Wszystkie', value: undefined },
-		{ id: 2, name: 'Żywe', value: '&status=alive' },
-		{ id: 3, name: 'Nieżywe', value: '&status=dead' },
-		{ id: 4, name: 'Nieznane', value: '&status=unknown' },
-	]
-
 	return (
 		<FormControl className={classes.formControl}>
-			<Select
-				onChange={e => handleFilterStatus(e.target.value)}
-				value={filterStatus}
-				displayEmpty
-				className={classes.selectEmpty}
-				inputProps={{ 'aria-label': 'Without label' }}>
-				<MenuItem value={undefined} disabled>
+			<Select onChange={e => handleFilterStatus(e.target.value)} value={filterStatus} className={classes.selectEmpty}>
+				<MenuItem className={classes.disabled} disabled>
 					Pokaż:
 				</MenuItem>
-				{selectFilters.map(filter => (
-					<MenuItem value={filter.value} key={filter.id}>
-						{filter.name}
-					</MenuItem>
-				))}
+				<MenuItem value={'&status='}>Wszystkie</MenuItem>
+				<MenuItem value={`&status=alive`}>Żywe</MenuItem>
+				<MenuItem value={`&status=dead`}>Martwe</MenuItem>
+				<MenuItem value={`&status=unknown`}>Nieznane</MenuItem>
 			</Select>
 			<FormHelperText>Filtruj</FormHelperText>
 		</FormControl>

@@ -7,7 +7,7 @@ import FilterSelect from '../components/FilterSelect'
 
 const CharacterList = () => {
 	const [page, setPage] = useState(1)
-	const [filterStatus, setFilterStatus] = useState(undefined)
+	const [filterStatus, setFilterStatus] = useState('')
 	const { data, isLoading, error } = useFetch(`https://rickandmortyapi.com/api/character/?page=${page}${filterStatus}`)
 
 	const handlePage = async e => {

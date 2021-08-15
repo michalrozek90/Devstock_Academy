@@ -3,13 +3,13 @@ import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 import { decrement, increment, resetCounter } from '../redux/ducks/counter'
 
-const Counter = () => {
-	const count = useSelector(state => state.counter.count)
-	const dispatch = useDispatch()
+const Result = styled.h2`
+	color: green;
+`
 
-	const Result = styled.h2`
-		color: green;
-	`
+const Counter = () => {
+	const dispatch = useDispatch()
+	const count = useSelector(state => state.counter.count)
 
 	return (
 		<div className='counter' style={{ textAlign: 'center', marginTop: '15%' }}>

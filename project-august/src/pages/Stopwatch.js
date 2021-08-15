@@ -29,9 +29,8 @@ const Stopwatch = () => {
 	}
 
 	const onReset = () => {
-		console.log('stan PRZED resetem : ', startTime)
 		dispatch(reset())
-		console.log('stan PO resecie : ', startTime)
+		console.log('RESETUJĘ')
 	}
 
 	const handleCount = e => {
@@ -39,21 +38,19 @@ const Stopwatch = () => {
 		let time = parseInt(value)
 
 		if (e.target.placeholder === 'miliseconds') {
-			console.log('MILISEKUNDY')
+			console.log(`Zmieniam upływ czasu milisekund na ${time}`)
 			count.setMiliSeconds = time
 		} else if (e.target.placeholder === 'seconds') {
-			console.log('SEKUNDY')
+			console.log(`Zmieniam upływ czasu sekund na ${time}`)
 			count.setSeconds = time
 		} else if (e.target.placeholder === 'minutes') {
-			console.log('MINUTY')
+			console.log(`Zmieniam upływ czasu minut na ${time}`)
 			count.setMinutes = time
 		} else if (e.target.placeholder === 'hours') {
-			console.log('GODZINY')
+			console.log(`Zmieniam upływ czasu godzin na ${time}`)
 			count.setHours = time
 		}
 	}
-
-	console.log('stan na zewnątrz funkcji : ', startTime)
 
 	const handleStart = e => {
 		let value = e.target.value
@@ -69,7 +66,7 @@ const Stopwatch = () => {
 			dispatch(startHours(number))
 		}
 
-		console.log('Wewnątrz, na koncu funkcji : ', startTime)
+		console.log('USTAWIAM STAN POCZĄTKOWY NA : ', startTime)
 	}
 
 	useEffect(() => {

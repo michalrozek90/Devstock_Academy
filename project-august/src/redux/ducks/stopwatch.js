@@ -103,7 +103,6 @@ const stopwatchActions = (state = initialState, action) => {
 			}
 
 		case ADD_SECONDS:
-			console.log('remaining : ', action.remainingMiliSeconds)
 			return {
 				...state,
 				time: {

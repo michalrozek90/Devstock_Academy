@@ -1,5 +1,8 @@
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { Button } from '@material-ui/core'
+import { addUser } from '../redux/ducks/registration'
+import { useState } from 'react'
 
 const FormContainer = styled.form`
 	max-width: 30%;
@@ -15,15 +18,24 @@ const Input = styled.input`
 `
 
 const Registration = () => {
+	const dispatch = useDispatch()
+	const database = useSelector(state => state.registration.usersDatabase)
+
+	const [name, setName] = useState(null)
+
+	const onSubmitHandler = e => {
+		e.preventDefault()
+		dispatch(addUser(name))
+		console.log(database)
+		setName(null)
+	}
+
 	return (
 		<div>
-			<FormContainer>
-				<Input type='text' placeholder='imię' />
-				<Input type='text' placeholder='nazwisko' />
-				<Input type='text' placeholder='e-mail' />
-				<Input type='password' placeholder='hasło' />
-				<Button variant={'contained'} color={'primary'}>
-					Wyślij
+			<FormContainer onSubmit={onSubmitHandler}>
+				<Input type='text' placeholder='imię' onChange={e => setName(e.target.value)} />
+				<Button type='submit' variant={'contained'} color={'primary'}>
+					Zarejestruj się
 				</Button>
 			</FormContainer>
 		</div>
