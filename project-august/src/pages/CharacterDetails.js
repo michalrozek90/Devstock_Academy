@@ -4,16 +4,14 @@ import styled from 'styled-components'
 import useFetch from '../components/useFetch'
 
 const ImageContainer = styled.div`
-height: 300px;
-width: 200px;
-background-image: {data.img};
+	height: 300px;
+	width: 200px;
 `
 
 const CharacterDetails = props => {
 	const { id, name } = useParams()
 	const { data, error, isLoading } = useFetch(`https://rickandmortyapi.com/api/character/${id}`)
 
-	console.log(data)
 	return (
 		<>
 			<Container>

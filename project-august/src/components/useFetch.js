@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 
-// Mój pierwszy, customowy hook :)
 const useFetch = url => {
 	const [data, setData] = useState(null)
 	const [isLoading, setIsLoading] = useState(false)
