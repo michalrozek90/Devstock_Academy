@@ -4,10 +4,12 @@ import { Container, Grid, Button } from '@material-ui/core'
 import CharacterCard from '../components/CharacterCard'
 import useFetch from '../components/useFetch'
 import FilterSelect from '../components/FilterSelect'
+import FilterSwitch from '../components/FilterSwitch'
 
 const CharacterList = () => {
 	const [page, setPage] = useState(1)
 	const [filterStatus, setFilterStatus] = useState('')
+	const [switchChecked, setSwitchChecked] = useState(false)
 	const { data, isLoading, error } = useFetch(`https://rickandmortyapi.com/api/character/?page=${page}${filterStatus}`)
 
 	const handlePage = async e => {
@@ -21,6 +23,15 @@ const CharacterList = () => {
 	const handleFilterStatus = newFilter => {
 		setPage(1)
 		setFilterStatus(newFilter)
+	}
+
+	const handleFilterSwitch = () => {
+		setSwitchChecked(prev => !prev)
+		if (switchChecked) {
+			data.results.sort((a, b) => (a.name > b.name ? 1 : -1))
+		} else {
+			data.results.sort((a, b) => (a.name < b.name ? 1 : -1))
+		}
 	}
 
 	return (
@@ -37,22 +48,27 @@ const CharacterList = () => {
 			{data && (
 				<div>
 					<Container>
-						<Button
-							onClick={handlePage}
-							variant={'outlined'}
-							disabled={data.info.prev === null || isLoading ? true : false}
-							color={'primary'}>
-							POPRZEDNIA
-						</Button>
+						<Container>
+							<Button
+								onClick={handlePage}
+								variant={'outlined'}
+								disabled={data.info.prev === null || isLoading ? true : false}
+								color={'primary'}>
+								POPRZEDNIA
+							</Button>
 
-						<Button
-							onClick={handlePage}
-							variant={'outlined'}
-							disabled={data.info.next === null || isLoading ? true : false}
-							color={'secondary'}>
-							NASTĘPNA
-						</Button>
-						<FilterSelect handleFilterStatus={handleFilterStatus} filterStatus={filterStatus} />
+							<Button
+								onClick={handlePage}
+								variant={'outlined'}
+								disabled={data.info.next === null || isLoading ? true : false}
+								color={'secondary'}>
+								NASTĘPNA
+							</Button>
+						</Container>
+						<Container>
+							<FilterSelect handleFilterStatus={handleFilterStatus} filterStatus={filterStatus} />
+							<FilterSwitch handleFilterSwitch={handleFilterSwitch} switchChecked={switchChecked} />
+						</Container>
 					</Container>
 				</div>
 			)}

@@ -8,7 +8,7 @@ const ImageContainer = styled.div`
 	width: 200px;
 `
 
-const CharacterDetails = props => {
+const CharacterDetails = () => {
 	const { id, name } = useParams()
 	const { data, error, isLoading } = useFetch(`https://rickandmortyapi.com/api/character/${id}`)
 
@@ -24,6 +24,7 @@ const CharacterDetails = props => {
 					<h1>CHARACTER NAME - {name}</h1>
 					<h1>CHARACTER STATUS - {data.status}</h1>
 					<h1>CHARACTER SPECIES - {data.species}</h1>
+
 					<ImageContainer />
 				</Container>
 			)}
