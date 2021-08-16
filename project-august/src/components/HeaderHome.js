@@ -46,6 +46,7 @@ const Header = () => {
 								placeholder={'Wprowadź email'}
 								color={'secondary'}
 								style={{ color: 'white', width: '50%', height: '3rem', margin: '1rem' }}></OutlinedInput>
+
 							<Button variant={'contained'} color={'secondary'} style={{ height: '3rem' }}>
 								Subskrybuj teraz!
 							</Button>

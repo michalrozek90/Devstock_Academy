@@ -1,16 +1,26 @@
 import React, { useState } from 'react'
-import { Container, Grid, Button } from '@material-ui/core'
+import { Grid, Button } from '@material-ui/core'
+import styled from 'styled-components'
 
 import CharacterCard from '../components/CharacterCard'
 import useFetch from '../components/useFetch'
 import FilterSelect from '../components/FilterSelect'
 import FilterSwitch from '../components/FilterSwitch'
 
+const Header = styled.div`
+	position: relative;
+	display: flex;
+	flex-basis: 100%;
+	background-color: lightgray;
+`
+
 const CharacterList = () => {
 	const [page, setPage] = useState(1)
-	const [filterStatus, setFilterStatus] = useState('')
+	const [filterSelectStatus, setFilterSelectStatus] = useState('')
 	const [switchChecked, setSwitchChecked] = useState(false)
-	const { data, isLoading, error } = useFetch(`https://rickandmortyapi.com/api/character/?page=${page}${filterStatus}`)
+	const { data, isLoading, error } = useFetch(
+		`https://rickandmortyapi.com/api/character/?page=${page}${filterSelectStatus}`
+	)
 
 	const handlePage = async e => {
 		if (e.target.outerText === 'POPRZEDNIA') {
@@ -20,9 +30,9 @@ const CharacterList = () => {
 		}
 	}
 
-	const handleFilterStatus = newFilter => {
+	const handleFilterSelect = newFilter => {
 		setPage(1)
-		setFilterStatus(newFilter)
+		setFilterSelectStatus(newFilter)
 	}
 
 	const handleFilterSwitch = () => {
@@ -35,45 +45,47 @@ const CharacterList = () => {
 	}
 
 	return (
-		<>
-			<Container>
-				{error && <h1>{error}</h1>}
-				{data && <div>Ogólna liczba postaci: {data.info.count}</div>}
+		<div>
+			<Header>
+				<div>
+					{error && <h1>{error}</h1>}
+					{data && <div>Ogólna liczba postaci: {data.info.count}</div>}
+					{data && (
+						<div>
+							Obecna strona: {page} z {data.info.pages}
+						</div>
+					)}
+				</div>
 				{data && (
 					<div>
-						Obecna strona: {page} z {data.info.pages}
+						<div>
+							<div>
+								<Button
+									onClick={handlePage}
+									variant={'outlined'}
+									disabled={data.info.prev === null || isLoading ? true : false}
+									color={'primary'}>
+									{data.info.prev === null ? 'BRAK' : 'POPRZEDNIA'}
+								</Button>
+
+								<Button
+									onClick={handlePage}
+									variant={'outlined'}
+									disabled={data.info.next === null || isLoading ? true : false}
+									color={'secondary'}>
+									{data.info.next === null ? 'BRAK' : 'NASTĘPNA'}
+								</Button>
+							</div>
+							<div>
+								<FilterSelect handleFilterSelect={handleFilterSelect} filterSelectStatus={filterSelectStatus} />
+								<FilterSwitch handleFilterSwitch={handleFilterSwitch} switchChecked={switchChecked} />
+							</div>
+						</div>
 					</div>
 				)}
-			</Container>
-			{data && (
-				<div>
-					<Container>
-						<Container>
-							<Button
-								onClick={handlePage}
-								variant={'outlined'}
-								disabled={data.info.prev === null || isLoading ? true : false}
-								color={'primary'}>
-								POPRZEDNIA
-							</Button>
-
-							<Button
-								onClick={handlePage}
-								variant={'outlined'}
-								disabled={data.info.next === null || isLoading ? true : false}
-								color={'secondary'}>
-								NASTĘPNA
-							</Button>
-						</Container>
-						<Container>
-							<FilterSelect handleFilterStatus={handleFilterStatus} filterStatus={filterStatus} />
-							<FilterSwitch handleFilterSwitch={handleFilterSwitch} switchChecked={switchChecked} />
-						</Container>
-					</Container>
-				</div>
-			)}
-			{isLoading && <p>Loading...</p>}
-			<Container>
+				{isLoading && <p>Loading...</p>}
+			</Header>
+			<div>
 				<Grid container spacing={3}>
 					{data &&
 						data.results.map(card => {
@@ -86,8 +98,8 @@ const CharacterList = () => {
 							)
 						})}
 				</Grid>
-			</Container>
-		</>
+			</div>
+		</div>
 	)
 }
 

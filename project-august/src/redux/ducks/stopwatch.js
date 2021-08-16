@@ -75,12 +75,14 @@ export const toggle = () => ({
 })
 
 const initialState = {
+	// Czas początkowy
 	time: {
 		hours: 0,
 		minutes: 0,
 		seconds: 0,
 		miliSeconds: 0,
 	},
+	// O ile ma się zwiększać czas
 	count: {
 		setHours: 1,
 		setMinutes: 1,

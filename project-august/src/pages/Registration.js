@@ -19,21 +19,47 @@ const Input = styled.input`
 
 const Registration = () => {
 	const dispatch = useDispatch()
-	const database = useSelector(state => state.registration.usersDatabase)
+	const users = useSelector(state => state.registration.usersDatabase)
 
-	const [name, setName] = useState(null)
+	const [data, setData] = useState({ firstName: null, lastName: null, email: null, password: null })
 
 	const onSubmitHandler = e => {
 		e.preventDefault()
-		dispatch(addUser(name))
-		console.log(database)
-		setName(null)
+		// if (
+		// 	users.forEach((el, i) => {
+		// 		el[i].includes(data.email)
+		// 		console.log(`index ${i}, email ${el.email}`)
+		// 	})
+		// ) {
+		// 	alert('Email już istnieje')
+		// } else {
+		dispatch(addUser(data))
+		// }
+		// console.log(users[1].email)
+		console.log(users)
 	}
-
 	return (
 		<div>
 			<FormContainer onSubmit={onSubmitHandler}>
-				<Input type='text' placeholder='imię' onChange={e => setName(e.target.value)} />
+				<Input
+					type='text'
+					placeholder='imię'
+					onChange={e => setData({ ...data, firstName: e.target.value })}
+					required
+				/>
+				<Input
+					type='text'
+					placeholder='nazwisko'
+					onChange={e => setData({ ...data, lastName: e.target.value })}
+					required
+				/>
+				<Input type='text' placeholder='e-mail' onChange={e => setData({ ...data, email: e.target.value })} required />
+				<Input
+					type='password'
+					placeholder='hasło'
+					onChange={e => setData({ ...data, password: e.target.value })}
+					required
+				/>
 				<Button type='submit' variant={'contained'} color={'primary'}>
 					Zarejestruj się
 				</Button>

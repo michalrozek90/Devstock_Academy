@@ -18,14 +18,14 @@ const useStyles = makeStyles(theme => ({
 	},
 }))
 
-const FilterSelect = ({ handleFilterStatus, filterStatus }) => {
+const FilterSelect = ({ handleFilterSelect, filterSelectStatus }) => {
 	const classes = useStyles()
 
 	return (
 		<FormControl className={classes.formControl}>
 			<Select
-				onChange={e => handleFilterStatus(e.target.value)}
-				value={filterStatus}
+				onChange={e => handleFilterSelect(e.target.value)}
+				value={filterSelectStatus}
 				className={classes.selectEmpty}
 				placeholder={'Filtruj'}>
 				<MenuItem className={classes.disabled} disabled>

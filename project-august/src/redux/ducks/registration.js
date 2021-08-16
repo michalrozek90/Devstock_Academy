@@ -8,15 +8,22 @@ export const addUser = user => ({
 })
 
 const initialState = {
-	usersDatabase: ['Ewa'],
+	usersDatabase: [
+		{
+			firstName: 'Ewa',
+			lastName: 'Nowak',
+			email: 'ewa@nowak.pl',
+			password: '1234',
+		},
+	],
 }
 
 // REDUCER
 const registrationActions = (state = initialState, action) => {
-	console.log('payload : ', action.payload)
+	// console.log(state)
 	switch (action.type) {
 		case ADD_USER:
-			return { ...state, usersDatabase: state.usersDatabase.push(action.payload) }
+			return { ...state, usersDatabase: [...state.usersDatabase, action.payload] }
 		default:
 			return state
 	}
