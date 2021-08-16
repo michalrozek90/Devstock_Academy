@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { Container } from '@material-ui/core'
+import { Button, Container, Typography } from '@material-ui/core'
 import styled from 'styled-components'
 
 import useFetch from '../components/useFetch'
@@ -24,7 +24,14 @@ const ImageContainer = styled.div`
 	left: 50%;
 	height: 400px;
 	width: 200px;
-	border: 2px solid yellow;
+	/* border: 2px solid yellow; */
+`
+
+const DataContainer = styled(Container)`
+	max-width: 40%;
+	position: absolute;
+	top: 20%;
+	left: 5%;
 `
 
 const CharacterDetails = () => {
@@ -33,19 +40,22 @@ const CharacterDetails = () => {
 
 	return (
 		<MainContainer>
+			<Button color={'primary'} variant={'contained'}>
+				Jeszcze nie działam... jeszcze!!!
+			</Button>
 			<Container>
 				{isLoading && <p>Loading...</p>}
 				{error && <h1>{error}</h1>}
 			</Container>
 			{data && (
-				<Container>
-					<h1>CHARACTER ID - {id}</h1>
-					<h1>CHARACTER NAME - {name}</h1>
-					<h1>CHARACTER STATUS - {data.status}</h1>
-					<h1>CHARACTER SPECIES - {data.species}</h1>
-
+				<DataContainer>
+					<Typography variant='h3'>DANE POSTACI:</Typography>
+					<Typography variant='h5'>NUMER ID - {id}</Typography>
+					<Typography variant='h5'>IMIĘ - {name}</Typography>
+					<Typography variant='h5'>STATUS - {data.status}</Typography>
+					<Typography variant='h5'>GATUNEK - {data.species}</Typography>
 					<ImageContainer />
-				</Container>
+				</DataContainer>
 			)}
 		</MainContainer>
 	)

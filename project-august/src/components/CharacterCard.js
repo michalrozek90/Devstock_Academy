@@ -18,7 +18,7 @@ const useStyles = makeStyles({
 		height: 200,
 		transition: '.3s',
 		'&:hover': {
-			transform: 'scale(1.1)',
+			filter: 'contrast(120%)',
 		},
 	},
 	header: {
@@ -27,12 +27,15 @@ const useStyles = makeStyles({
 	content: {
 		fontSize: '12px',
 	},
+	link: {
+		textDecoration: 'none',
+	},
 })
 
 const CharacterCard = ({ name, status, species, img, id }) => {
 	const classes = useStyles()
 	return (
-		<Link to={`/character-list/${name}/${id}`} species={species}>
+		<Link className={classes.link} to={`/character-list/${name}/${id}`} species={species}>
 			<Card className={classes.root}>
 				<CardActionArea>
 					<CardHeader className={classes.header} avatar={<Avatar>{id}</Avatar>} title={name} />

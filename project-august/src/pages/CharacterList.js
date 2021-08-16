@@ -1,17 +1,13 @@
 import React, { useState } from 'react'
-import { Grid, Button } from '@material-ui/core'
+import { Grid } from '@material-ui/core'
 import styled from 'styled-components'
 
 import CharacterCard from '../components/CharacterCard'
 import useFetch from '../components/useFetch'
-import FilterSelect from '../components/FilterSelect'
-import FilterSwitch from '../components/FilterSwitch'
+import CharacterListHeader from '../components/CharacterListHeader'
 
-const Header = styled.div`
-	position: relative;
-	display: flex;
-	flex-basis: 100%;
-	background-color: lightgray;
+const CardsContainer = styled.div`
+	padding: 40px;
 `
 
 const CharacterList = () => {
@@ -46,59 +42,31 @@ const CharacterList = () => {
 
 	return (
 		<div>
-			<Header>
-				<div>
-					{error && <h1>{error}</h1>}
-					{data && <div>Ogólna liczba postaci: {data.info.count}</div>}
-					{data && (
-						<div>
-							Obecna strona: {page} z {data.info.pages}
-						</div>
-					)}
-				</div>
-				{data && (
-					<div>
-						<div>
-							<div>
-								<Button
-									onClick={handlePage}
-									variant={'outlined'}
-									disabled={data.info.prev === null || isLoading ? true : false}
-									color={'primary'}>
-									{data.info.prev === null ? 'BRAK' : 'POPRZEDNIA'}
-								</Button>
-
-								<Button
-									onClick={handlePage}
-									variant={'outlined'}
-									disabled={data.info.next === null || isLoading ? true : false}
-									color={'secondary'}>
-									{data.info.next === null ? 'BRAK' : 'NASTĘPNA'}
-								</Button>
-							</div>
-							<div>
-								<FilterSelect handleFilterSelect={handleFilterSelect} filterSelectStatus={filterSelectStatus} />
-								<FilterSwitch handleFilterSwitch={handleFilterSwitch} switchChecked={switchChecked} />
-							</div>
-						</div>
-					</div>
-				)}
-				{isLoading && <p>Loading...</p>}
-			</Header>
-			<div>
-				<Grid container spacing={3}>
+			<CharacterListHeader
+				error={error}
+				data={data}
+				page={page}
+				handlePage={handlePage}
+				isLoading={isLoading}
+				handleFilterSelect={handleFilterSelect}
+				filterSelectStatus={filterSelectStatus}
+				handleFilterSwitch={handleFilterSwitch}
+				switchChecked={switchChecked}
+			/>
+			<CardsContainer>
+				<Grid container spacing={4}>
 					{data &&
 						data.results.map(card => {
 							const { name, status, species, image, id } = card
 
 							return (
-								<Grid item xs={12} sm={6} md={3} lg={3} xl={2} key={id}>
+								<Grid item xs={12} sm={6} md={3} lg={2} xl={2} key={id}>
 									<CharacterCard name={name} status={status} species={species} img={image} id={id} key={id} />
 								</Grid>
 							)
 						})}
 				</Grid>
-			</div>
+			</CardsContainer>
 		</div>
 	)
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
+import styled from 'styled-components'
 import {
 	addMiliseconds,
 	addSeconds,
@@ -13,7 +14,18 @@ import {
 	startMinutes,
 	startHours,
 } from '../redux/ducks/stopwatch'
-import { TextField } from '@material-ui/core'
+import { Button, TextField } from '@material-ui/core'
+
+const MyInput = styled(TextField)`
+	margin: 10px;
+	width: 10%;
+	text-align: center;
+	padding: 0 10px;
+`
+
+const MyButton = styled(Button)`
+	margin: 20px;
+`
 
 const Stopwatch = () => {
 	const dispatch = useDispatch()
@@ -97,17 +109,22 @@ const Stopwatch = () => {
 				<span>{seconds >= 10 ? seconds : '0' + seconds} : </span>
 				<span>{miliSeconds >= 10 ? miliSeconds : '0' + miliSeconds}</span>
 			</h2>
-			<button onClick={handleClick}>{!active ? 'Start' : 'Stop'}</button>
-			<button onClick={onReset}>Reset</button>
-			<input type='number' placeholder='hours' onChange={handleCount} />
-			<input type='number' placeholder='minutes' onChange={handleCount} />
-			<input type='number' placeholder='seconds' onChange={handleCount} />
-			<input type='number' placeholder='miliseconds' onChange={handleCount} />
+			<MyButton variant='contained' color='primary' onClick={handleClick}>
+				{!active ? 'Start' : 'Stop'}
+			</MyButton>
+			<MyButton variant='contained' color='secondary' onClick={onReset}>
+				Reset
+			</MyButton>
 			<br />
-			<TextField placeholder='start hours' type='number' onChange={handleStart}></TextField>
-			<TextField placeholder='start minutes' type='number' onChange={handleStart}></TextField>
-			<TextField placeholder='start seconds' type='number' onChange={handleStart}></TextField>
-			<TextField placeholder='start miliseconds' type='number' onChange={handleStart}></TextField>
+			<MyInput type='number' placeholder='hours' onChange={handleCount} />
+			<MyInput type='number' placeholder='minutes' onChange={handleCount} />
+			<MyInput type='number' placeholder='seconds' onChange={handleCount} />
+			<MyInput type='number' placeholder='miliseconds' onChange={handleCount} />
+			<br />
+			<MyInput placeholder='start hours' type='number' onChange={handleStart}></MyInput>
+			<MyInput placeholder='start minutes' type='number' onChange={handleStart}></MyInput>
+			<MyInput placeholder='start seconds' type='number' onChange={handleStart}></MyInput>
+			<MyInput placeholder='start miliseconds' type='number' onChange={handleStart}></MyInput>
 		</div>
 	)
 }

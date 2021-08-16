@@ -8,14 +8,7 @@ export const addUser = user => ({
 })
 
 const initialState = {
-	usersDatabase: [
-		{
-			firstName: 'Ewa',
-			lastName: 'Nowak',
-			email: 'ewa@nowak.pl',
-			password: '1234',
-		},
-	],
+	usersDatabase: [],
 }
 
 // REDUCER
