@@ -1,7 +1,8 @@
-import { Container, Grid, Paper, makeStyles, Typography } from '@material-ui/core'
 import { NavLink } from 'react-router-dom'
-import cardsInfo from '../constants/cardsInfo'
 import styled from 'styled-components'
+import { Container, Grid, Paper, makeStyles, Typography } from '@material-ui/core'
+
+import cardsInfo from '../staticData/cardsInfo'
 
 const Icons = styled.span`
 	> svg {

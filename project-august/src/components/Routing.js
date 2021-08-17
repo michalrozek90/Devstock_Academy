@@ -8,8 +8,8 @@ import Counter from '../pages/Counter'
 import CharacterList from '../pages/CharacterList'
 import Login from '../pages/Login'
 import Registration from '../pages/Registration'
-import userInfo from '../constants/userInfo'
 import CharacterDetails from '../pages/CharacterDetails'
+import userInfo from '../staticData/userInfo'
 
 const Routing = () => {
 	return (

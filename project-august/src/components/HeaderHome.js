@@ -1,6 +1,6 @@
-import { Button, FormControl, OutlinedInput, Typography } from '@material-ui/core'
 import React from 'react'
 import styled from 'styled-components'
+import { Button, FormControl, OutlinedInput, Typography } from '@material-ui/core'
 
 import bgcImage from '../img/aboutMe.jpg'
 
@@ -29,28 +29,39 @@ const Box = styled.div`
 	align-items: center;
 `
 
+const Title = styled(Typography)`
+	color: white;
+	margin-bottom: 1rem;
+`
+const MyContainer = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`
+const MyInput = styled(OutlinedInput)`
+	color: white;
+	width: 50%;
+	height: 3rem;
+	margin: 1rem;
+`
+
 const Header = () => {
 	return (
 		<HeaderContainer>
 			<FormContainer>
 				<FormControl>
 					<Box>
-						<Typography variant={'h3'} color={'textPrimary'} style={{ color: 'white', marginBottom: '1rem' }}>
+						<Title variant={'h3'} color={'textPrimary'}>
 							Dołącz do nas!
-						</Typography>
-						<Typography className='subik' variant={'h5'} style={{ color: 'white' }}>
-							Zasubskrybuj aby otrzymywać najnowsze informacje na bieżąco
-						</Typography>
-						<div>
-							<OutlinedInput
-								placeholder={'Wprowadź email'}
-								color={'secondary'}
-								style={{ color: 'white', width: '50%', height: '3rem', margin: '1rem' }}></OutlinedInput>
+						</Title>
+						<Title variant={'h5'}>Zasubskrybuj aby otrzymywać najnowsze informacje na bieżąco</Title>
+						<MyContainer>
+							<MyInput placeholder={'Wprowadź email'} color={'secondary'}></MyInput>
 
 							<Button variant={'contained'} color={'secondary'} style={{ height: '3rem' }}>
 								Subskrybuj teraz!
 							</Button>
-						</div>
+						</MyContainer>
 					</Box>
 				</FormControl>
 			</FormContainer>

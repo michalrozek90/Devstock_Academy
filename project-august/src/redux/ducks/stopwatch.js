@@ -7,7 +7,7 @@ const START_MILISECONDS = 'startMiliseconds'
 const START_SECONDS = 'startSeconds'
 const START_MINUTES = 'startMinutes'
 const START_HOURS = 'startHours'
-const RESET = 'reset'
+const RESET_STOPWATCH = 'resetStopwatch'
 const TOGGLE = 'toggle'
 
 // ACTIONS
@@ -66,8 +66,8 @@ export const startHours = amount => {
 	}
 }
 
-export const reset = () => ({
-	type: RESET,
+export const resetStopwatch = () => ({
+	type: RESET_STOPWATCH,
 })
 
 export const toggle = () => ({
@@ -170,7 +170,7 @@ const stopwatchActions = (state = initialState, action) => {
 				},
 			}
 
-		case RESET:
+		case RESET_STOPWATCH:
 			return {
 				...initialState,
 				time: {

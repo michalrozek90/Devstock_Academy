@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom'
-import { Button, Container, Typography } from '@material-ui/core'
 import styled from 'styled-components'
+import { Button, Container, Typography } from '@material-ui/core'
 
-import useFetch from '../components/useFetch'
+import useFetch from '../customHooks/useFetch'
 import charDetails from '../img/charDetails.jpg'
 
 const MainContainer = styled.div`

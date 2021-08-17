@@ -1,9 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import MenuItem from '@material-ui/core/MenuItem'
-import FormHelperText from '@material-ui/core/FormHelperText'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
+import { FormControl, FormHelperText, MenuItem, Select } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
 	formControl: {
@@ -33,10 +30,10 @@ const FilterSelect = ({ handleFilterSelect, filterSelectStatus }) => {
 				<MenuItem className={classes.disabled} disabled>
 					Pokaż:
 				</MenuItem>
-				<MenuItem value={'&status='}>Wszystkie</MenuItem>
-				<MenuItem value={`&status=alive`}>Żywe</MenuItem>
-				<MenuItem value={`&status=dead`}>Martwe</MenuItem>
-				<MenuItem value={`&status=unknown`}>Nieznane</MenuItem>
+				<MenuItem value={''}>Wszystkie</MenuItem>
+				<MenuItem value={`alive`}>Żywe</MenuItem>
+				<MenuItem value={`dead`}>Martwe</MenuItem>
+				<MenuItem value={`unknown`}>Nieznane</MenuItem>
 			</Select>
 			<FormHelperText>Filtruj</FormHelperText>
 		</FormControl>

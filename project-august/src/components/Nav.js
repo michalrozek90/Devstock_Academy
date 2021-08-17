@@ -2,8 +2,8 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Button, Container, makeStyles } from '@material-ui/core'
 
-import navigationButtons from '../constants/navigationButtons'
 import Logo from './Logo'
+import navigationButtons from '../staticData/navigationButtons'
 
 const useStyles = makeStyles({
 	navBar: {

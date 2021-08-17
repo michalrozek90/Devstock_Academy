@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
-import { Grid } from '@material-ui/core'
 import styled from 'styled-components'
+import { Grid } from '@material-ui/core'
 
 import CharacterCard from '../components/CharacterCard'
-import useFetch from '../components/useFetch'
 import CharacterListHeader from '../components/CharacterListHeader'
+import useFetch from '../customHooks/useFetch'
+
+const nextButtonText = 'NASTĘPNA'
+const previousButtonText = 'POPRZEDNIA'
+const noPageAvailableButtonText = 'BRAK'
 
 const CardsContainer = styled.div`
 	padding: 40px;
@@ -15,13 +19,18 @@ const CharacterList = () => {
 	const [filterSelectStatus, setFilterSelectStatus] = useState('')
 	const [switchChecked, setSwitchChecked] = useState(false)
 	const { data, isLoading, error } = useFetch(
-		`https://rickandmortyapi.com/api/character/?page=${page}${filterSelectStatus}`
+		`https://rickandmortyapi.com/api/character/?page=${page}&status=${filterSelectStatus}`
 	)
 
 	const handlePage = async e => {
-		if (e.target.outerText === 'POPRZEDNIA') {
+		const { outerText } = e.target
+
+		if (switchChecked) {
+			handleFilterSwitch()
+		}
+		if (outerText === previousButtonText.toUpperCase()) {
 			setPage(page - 1)
-		} else if (e.target.outerText === 'NASTĘPNA') {
+		} else if (outerText === nextButtonText.toUpperCase()) {
 			setPage(page + 1)
 		}
 	}
@@ -52,6 +61,9 @@ const CharacterList = () => {
 				filterSelectStatus={filterSelectStatus}
 				handleFilterSwitch={handleFilterSwitch}
 				switchChecked={switchChecked}
+				nextButtonText={nextButtonText}
+				previousButtonText={previousButtonText}
+				noPageAvailableButtonText={noPageAvailableButtonText}
 			/>
 			<CardsContainer>
 				<Grid container spacing={4}>

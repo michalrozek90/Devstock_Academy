@@ -1,5 +1,6 @@
 import { Button } from '@material-ui/core'
 import styled from 'styled-components'
+
 import FilterSelect from '../components/FilterSelect'
 import FilterSwitch from '../components/FilterSwitch'
 
@@ -39,15 +40,20 @@ const CharacterListHeader = ({
 	filterSelectStatus,
 	handleFilterSwitch,
 	switchChecked,
+	nextButtonText,
+	previousButtonText,
+	noPageAvailableButtonText,
 }) => {
 	return (
 		<Header>
 			<div>
 				{error && <h1>{error}</h1>}
-				{data && <div>Ogólna liczba postaci: {data.info.count}</div>}
 				{data && (
 					<div>
-						Obecna strona: {page} z {data.info.pages}
+						<div>Ogólna liczba postaci: {data.info.count}</div>
+						<div>
+							Obecna strona: {page} z {data.info.pages}
+						</div>
 					</div>
 				)}
 			</div>
@@ -60,7 +66,7 @@ const CharacterListHeader = ({
 								variant={'outlined'}
 								disabled={data.info.prev === null || isLoading ? true : false}
 								color={'primary'}>
-								{data.info.prev === null ? 'BRAK' : 'POPRZEDNIA'}
+								{data.info.prev === null ? noPageAvailableButtonText : previousButtonText}
 							</PreviousButton>
 							<FilterContainer>
 								<FilterSelect handleFilterSelect={handleFilterSelect} filterSelectStatus={filterSelectStatus} />
@@ -71,7 +77,7 @@ const CharacterListHeader = ({
 								variant={'outlined'}
 								disabled={data.info.next === null || isLoading ? true : false}
 								color={'secondary'}>
-								{data.info.next === null ? 'BRAK' : 'NASTĘPNA'}
+								{data.info.next === null ? noPageAvailableButtonText : nextButtonText}
 							</NextButton>
 						</div>
 					</div>

@@ -15,8 +15,6 @@ const Input = styled.input`
 `
 
 const Login = () => {
-	// const [email, setEmail] = useState("")
-
 	return (
 		<div>
 			<FormContainer>

@@ -13,7 +13,6 @@ const initialState = {
 
 // REDUCER
 const registrationActions = (state = initialState, action) => {
-	// console.log(state)
 	switch (action.type) {
 		case ADD_USER:
 			return { ...state, usersDatabase: [...state.usersDatabase, action.payload] }

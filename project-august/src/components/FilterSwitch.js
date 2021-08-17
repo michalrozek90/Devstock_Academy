@@ -1,9 +1,5 @@
-import FormLabel from '@material-ui/core/FormLabel'
-import FormControl from '@material-ui/core/FormControl'
-import FormGroup from '@material-ui/core/FormGroup'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import Switch from '@material-ui/core/Switch'
 import styled from 'styled-components'
+import { FormControl, FormControlLabel, FormGroup, FormLabel, Switch } from '@material-ui/core'
 
 const SwitchContainer = styled.div`
 	/* position: absolute; */

@@ -1,6 +1,7 @@
-import { Typography } from '@material-ui/core'
 import React from 'react'
 import styled from 'styled-components'
+import { Typography } from '@material-ui/core'
+
 import myImage from '../img/myImage.png'
 
 const SectionContainer = styled.div`
@@ -29,21 +30,23 @@ const TxtContainer = styled.div`
 	padding: 40px;
 `
 
-const TypographyBottom = styled(Typography)`
+const TypographySignature = styled(Typography)`
 	position: absolute;
-	top: 80%;
+	top: 75%;
 	padding: 40px;
 `
 
 const AboutMe = ({ userInfo }) => {
+	const { firstName, lastName, age } = userInfo
+
+	const mySignature = `${firstName} ${lastName}, ${age} lat`
+
 	return (
 		<SectionContainer>
 			<ImgContainer />
 			<TxtContainer>
 				<Typography variant={'subtitle1'}>{userInfo.body}</Typography>
-				<TypographyBottom variant={'h4'}>
-					{userInfo.firstName} {userInfo.lastName}, {userInfo.age} lat
-				</TypographyBottom>
+				<TypographySignature variant={'h4'}>{mySignature}</TypographySignature>
 			</TxtContainer>
 		</SectionContainer>
 	)
