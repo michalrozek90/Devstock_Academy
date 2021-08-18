@@ -16,10 +16,11 @@ import {
 import styled from 'styled-components'
 import { Button, TextField } from '@material-ui/core'
 
+import Title from '../components/Title'
 import { stopwatchInputsSetCount, stopwatchInputsSetStart } from '../staticData/stopwatchInputs'
 
 const MainContainer = styled.div`
-	transform: translateY(65%);
+	transform: translateY(20%);
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -82,16 +83,18 @@ const Stopwatch = () => {
 	}
 
 	const handleStart = e => {
+		const { placeholder } = e.target
+
 		let value = e.target.value
 		let number = parseInt(value)
 
 		if (e.target.placeholder === 'start miliseconds') {
 			dispatch(startMiliseconds(number))
-		} else if (e.target.placeholder === 'start seconds') {
+		} else if (placeholder === 'start seconds') {
 			dispatch(startSeconds(number))
-		} else if (e.target.placeholder === 'start minutes') {
+		} else if (placeholder === 'start minutes') {
 			dispatch(startMinutes(number))
-		} else if (e.target.placeholder === 'start hours') {
+		} else if (placeholder === 'start hours') {
 			dispatch(startHours(number))
 		}
 
@@ -129,24 +132,27 @@ const Stopwatch = () => {
 	})
 
 	return (
-		<MainContainer>
-			<ResultContainer>
-				<span>{hours >= 10 ? hours : '0' + hours} : </span>
-				<span>{minutes >= 10 ? minutes : '0' + minutes} : </span>
-				<span>{seconds >= 10 ? seconds : '0' + seconds} : </span>
-				<span>{miliSeconds >= 10 ? miliSeconds : '0' + miliSeconds}</span>
-			</ResultContainer>
-			<ButtonsContainer>
-				<MyButton variant='contained' color='primary' onClick={handleClick}>
-					{!active ? 'Start' : 'Stop'}
-				</MyButton>
-				<MyButton variant='contained' color='secondary' onClick={onReset}>
-					Reset
-				</MyButton>
-			</ButtonsContainer>
-			<div>{inputsSetCount}</div>
-			<div>{inputsSetStart}</div>
-		</MainContainer>
+		<>
+			<Title title={'stoper'} />
+			<MainContainer>
+				<ResultContainer>
+					<span>{hours >= 10 ? hours : '0' + hours} : </span>
+					<span>{minutes >= 10 ? minutes : '0' + minutes} : </span>
+					<span>{seconds >= 10 ? seconds : '0' + seconds} : </span>
+					<span>{miliSeconds >= 10 ? miliSeconds : '0' + miliSeconds}</span>
+				</ResultContainer>
+				<ButtonsContainer>
+					<MyButton variant='contained' color='primary' onClick={handleClick}>
+						{!active ? 'Start' : 'Stop'}
+					</MyButton>
+					<MyButton variant='contained' color='secondary' onClick={onReset}>
+						Reset
+					</MyButton>
+				</ButtonsContainer>
+				<div>{inputsSetCount}</div>
+				<div>{inputsSetStart}</div>
+			</MainContainer>
+		</>
 	)
 }
 

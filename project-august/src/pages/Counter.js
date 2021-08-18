@@ -4,9 +4,11 @@ import { decrement, increment, resetCounter } from '../redux/ducks/counter'
 import styled from 'styled-components'
 import { Button } from '@material-ui/core'
 
+import Title from '../components/Title'
+
 const MainContainer = styled.div`
 	text-align: center;
-	margin-top: 15%;
+	margin-top: 2rem;
 `
 
 const Result = styled.h2`
@@ -21,18 +23,21 @@ const Counter = () => {
 	const count = useSelector(state => state.counter.count)
 
 	return (
-		<MainContainer>
-			{count % 5 === 0 && count !== 0 ? <Result>{count}</Result> : <h2>{count}</h2>}
-			<MyButton variant='outlined' color='primary' onClick={() => dispatch(decrement())}>
-				Zmniejsz licznik
-			</MyButton>
-			<MyButton variant='contained' color='secondary' onClick={() => dispatch(resetCounter())}>
-				Resetuj
-			</MyButton>
-			<MyButton variant='outlined' color='primary' onClick={() => dispatch(increment())}>
-				Zwiększ licznik
-			</MyButton>
-		</MainContainer>
+		<>
+			<Title title='Licznik'>Licznik</Title>
+			<MainContainer>
+				{count % 5 === 0 && count !== 0 ? <Result>{count}</Result> : <h2>{count}</h2>}
+				<MyButton variant='outlined' color='primary' onClick={() => dispatch(decrement())}>
+					Zmniejsz licznik
+				</MyButton>
+				<MyButton variant='contained' color='secondary' onClick={() => dispatch(resetCounter())}>
+					Resetuj
+				</MyButton>
+				<MyButton variant='outlined' color='primary' onClick={() => dispatch(increment())}>
+					Zwiększ licznik
+				</MyButton>
+			</MainContainer>
+		</>
 	)
 }
 

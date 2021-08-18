@@ -30,7 +30,7 @@ const CustomizedSnackbars = () => {
 
 	return (
 		<div className={classes.root}>
-			<Snackbar open={snackbarOpen} autoHideDuration={3000} onClose={handleClose}>
+			<Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleClose}>
 				<Alert severity={severityType} elevation={6} variant='filled' onClose={handleClose} color={snackbarType}>
 					{snackbarMessage}
 				</Alert>

@@ -41,6 +41,7 @@ const Registration = () => {
 	const dispatch = useDispatch()
 	const users = useSelector(state => state.registration.usersDatabase)
 
+	const [prompt, setPrompt] = useState(false)
 	const [data, setData] = useState({ firstName: null, lastName: null, email: null, password: null })
 
 	const { firstName, lastName, email, password } = data
@@ -80,10 +81,12 @@ const Registration = () => {
 		) {
 			dispatch(addUser(data))
 			dispatch(setSnackbar(true, 'success', 'success', 'Zarejestrowano poprawnie!'))
+			e.target.reset()
 		}
 	}
 
 	const onChangeFirstNameHandler = e => {
+		setPrompt(true)
 		setData({ ...data, firstName: e.target.value })
 		setErrors({ ...errors, firstNameTooShort: e.target.value.length < 3 })
 	}
@@ -123,6 +126,13 @@ const Registration = () => {
 		return false
 	}
 
+	const isFormEmpty = () => {
+		if ((firstName || lastName || email || password) === ('' || null)) {
+			return true
+		}
+		return false
+	}
+
 	return (
 		<div>
 			<FormContainer onSubmit={onSubmitHandler}>
@@ -137,14 +147,14 @@ const Registration = () => {
 				{errors.emailTooShort && <Error>email za krótki</Error>}
 				{errors.emailAlreadyExists && <Error>ten email jest już zajęty</Error>}
 				{errors.emailWrongSyntax && <Error>email powinien zawierać znak @ i kończyć się znakami .com lub .pl</Error>}
-				<Input type='text' placeholder='hasło' onChange={e => onChangePasswordHandler(e)} required />
+				<Input type='password' placeholder='hasło' onChange={e => onChangePasswordHandler(e)} required />
 				{errors.passwordTooShort && <Error>hasło powinno posiadać co najmniej 6 znaków</Error>}
 				{errors.passwordNeedsOneNumber && <Error>hasło powinno zawierać przynajmniej 1 cyfrę</Error>}
 				<MyButton type='submit' variant={'contained'} color={'primary'}>
 					Zarejestruj się
 				</MyButton>
 				<Prompt
-					when={!!firstName || !!lastName || !!email || !!password}
+					when={isFormEmpty}
 					message='Niektórze pola formularza są wypełnione. Jeśli przejdziesz dalej, utracisz te dane. Czy kontynuować?'
 				/>
 			</FormContainer>

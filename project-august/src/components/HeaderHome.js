@@ -27,7 +27,6 @@ const Box = styled.div`
 	flex-direction: column;
 	align-items: center;
 `
-
 const Title = styled(Typography)`
 	color: white;
 	margin-bottom: 1rem;
@@ -46,6 +45,7 @@ const MyInput = styled(OutlinedInput)`
 const MyLink = styled(Link)`
 	text-decoration: none;
 `
+
 const Header = () => {
 	return (
 		<HeaderContainer>

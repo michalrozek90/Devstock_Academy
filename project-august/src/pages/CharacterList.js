@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { decrementPage, incrementPage, setPage } from '../redux/ducks/characterList'
 import styled from 'styled-components'
 import { Grid } from '@material-ui/core'
-
 import CharacterCard from '../components/CharacterCard'
 import CharacterListHeader from '../components/CharacterListHeader'
 import useFetch from '../customHooks/useFetch'
@@ -15,7 +16,11 @@ const CardsContainer = styled.div`
 `
 
 const CharacterList = () => {
-	const [page, setPage] = useState(1)
+	const dispatch = useDispatch()
+	const page = useSelector(state => state.characterList.page)
+
+	console.log(page)
+	// const [page, setPage] = useState(1)
 	const [filterSelectStatus, setFilterSelectStatus] = useState('')
 	const [switchChecked, setSwitchChecked] = useState(false)
 	const { data, isLoading, error } = useFetch(
@@ -29,14 +34,14 @@ const CharacterList = () => {
 			handleFilterSwitch()
 		}
 		if (outerText === previousButtonText.toUpperCase()) {
-			setPage(page - 1)
+			dispatch(decrementPage())
 		} else if (outerText === nextButtonText.toUpperCase()) {
-			setPage(page + 1)
+			dispatch(incrementPage())
 		}
 	}
 
 	const handleFilterSelect = newFilter => {
-		setPage(1)
+		dispatch(setPage())
 		setFilterSelectStatus(newFilter)
 	}
 

@@ -32,6 +32,7 @@ const useStyles = makeStyles({
 	button: {
 		padding: '15px 20px',
 		boxShadow: 'rgba(0, 0, 0, 0.05) 0px 0px 0px 1px',
+		fontSize: '1rem',
 	},
 
 	link: {
