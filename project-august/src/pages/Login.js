@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 import { Button } from '@material-ui/core'
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { setSnackbar } from '../redux/ducks/snackbar'
 
 const FormContainer = styled.form`
 	max-width: 30%;
@@ -20,20 +21,28 @@ const MyButton = styled(Button)`
 `
 
 const Login = () => {
+	const dispatch = useDispatch()
 	const users = useSelector(state => state.registration.usersDatabase)
 
 	const [data, setData] = useState({ email: null, password: null })
 
 	const onSubmitHandler = e => {
 		e.preventDefault()
-		console.log('logowanie')
+		for (let user of users) {
+			if (user.email !== data.email && user.password !== data.password) {
+				dispatch(setSnackbar(true, 'error', 'Błędny login lub hasło'))
+				return
+			} else {
+				console.log('logowanko gites!')
+			}
+		}
 	}
 
 	const onChangeEmailHandler = e => {
 		setData({ ...data, email: e.target.value })
 	}
 	const onChangePasswordHandler = e => {
-		setData({ ...data, email: e.target.value })
+		setData({ ...data, password: e.target.value })
 	}
 
 	return (

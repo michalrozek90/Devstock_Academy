@@ -14,15 +14,15 @@ const FormContainer = styled.form`
 `
 const Input = styled.input`
 	padding: 15px;
-	margin: 20px 30px;
+	margin: 20px 30px 5px 30px;
 	font-size: 1rem;
 `
 
 const Error = styled.p`
 	color: red;
-	font-size: 0.7rem;
+	font-size: 0.6rem;
 	text-align: left;
-	margin: 0 30px;
+	margin: 0px 30px;
 `
 
 const MyButton = styled(Button)`
@@ -50,34 +50,30 @@ const Registration = () => {
 		for (let user of users) {
 			if (user.email === data.email) {
 				setErrors({ ...errors, emailAlreadyExists: true })
-				dispatch(setSnackbar(true, 'error', 'Ten email jest już w użyciu'))
+				dispatch(setSnackbar(true, 'error', 'error', 'Wprowadź inny adres e-mail'))
 				return
-			} else {
-				setErrors({ ...errors, emailAlreadyExists: false })
 			}
 		}
+		setErrors({ ...errors, emailAlreadyExists: false })
 
-		// if (!passwordIncludesNumber(data.password)) {
-		// 	setErrors({ ...errors, passwordNeedsOneNumber: true })
-		// 	return
-		// } else {
-		// 	setErrors({ ...errors, passwordNeedsOneNumber: false })
-		// }
+		if (!passwordIncludesNumber(data.password)) {
+			setErrors({ ...errors, passwordNeedsOneNumber: true })
+			return
+		}
+		setErrors({ ...errors, passwordNeedsOneNumber: false })
 		if (
 			!errors.firstNameTooShort &&
 			!errors.lastNameTooShort &&
-			!errors.emailAlreadyExists &&
 			!errors.emailTooShort &&
 			!errors.emailWrongSyntax &&
-			!errors.passwordTooShort &&
-			!errors.passwordNeedsOneNumber
+			!errors.passwordTooShort
 		) {
 			dispatch(addUser(data))
-			dispatch(setSnackbar(true, 'success', 'Zarejestrowano poprawnie!'))
+			dispatch(setSnackbar(true, 'success', 'success', 'Zarejestrowano poprawnie!'))
 		}
 	}
 
-	console.log('Stan : ', users)
+	// console.log('Stan : ', users)
 
 	const onChangeFirstNameHandler = e => {
 		setData({ ...data, firstName: e.target.value })
@@ -89,38 +85,55 @@ const Registration = () => {
 		setErrors({ ...errors, lastNameTooShort: e.target.value.length < 3 })
 	}
 	const onChangeEmailHandler = e => {
+		console.log('.pl : ', e.target.value.lastIndexOf('.pl'))
+		console.log('.com : ', e.target.value.lastIndexOf('.com'))
 		setData({ ...data, email: e.target.value })
-		setErrors({ ...errors, emailTooShort: e.target.value.length < 3 })
+		setErrors({
+			...errors,
+			emailTooShort: e.target.value.length < 3,
+			emailAlreadyExists: false,
+			emailWrongSyntax:
+				e.target.value.indexOf('@') === -1 ||
+				(e.target.value.lastIndexOf('.com') === -1 && e.target.value.lastIndexOf('.pl') === -1),
+		})
+
+		// this.state.email.indexOf('@') !== -1 &&
+		// this.state.email.length > 1 &&
+		// this.state.email.lastIndexOf('.com') !== -1
 	}
 
 	const onChangePasswordHandler = e => {
 		setData({ ...data, password: e.target.value })
-		setErrors({ ...errors, passwordTooShort: e.target.value.length < 6 })
+		setErrors({
+			...errors,
+			passwordTooShort: e.target.value.length < 6,
+			passwordNeedsOneNumber: !passwordIncludesNumber(e.target.value),
+		})
 	}
 
-	// const passwordIncludesNumber = pass => {
-	// 	for (let i = 0; i < pass.length; i++) {
-	// 		if (!isNaN(pass[i])) {
-	// 			return true
-	// 		}
-	// 	}
-	// 	return false
-	// }
+	const passwordIncludesNumber = pass => {
+		for (let i = 0; i < pass.length; i++) {
+			if (!isNaN(pass[i])) {
+				return true
+			}
+		}
+		return false
+	}
 
 	return (
 		<div>
 			<FormContainer onSubmit={onSubmitHandler}>
 				<Input type='text' placeholder='imię' onChange={e => onChangeFirstNameHandler(e)} required />
-				{errors.firstNameTooShort && <Error>imię musi posiadać conajmniej 3 znaki</Error>}
+				{errors.firstNameTooShort && <Error>imię musi posiadać co najmniej 3 znaki</Error>}
 				<Input type='text' placeholder='nazwisko' onChange={e => onChangeLastNameHandler(e)} required />
-				{errors.lastNameTooShort && <Error>nazwisko musi posiadać conajmniej 3 znaki</Error>}
+				{errors.lastNameTooShort && <Error>nazwisko musi posiadać co najmniej 3 znaki</Error>}
 				<Input type='text' placeholder='e-mail' onChange={e => onChangeEmailHandler(e)} required />
 				{errors.emailTooShort && <Error>email za krótki</Error>}
 				{errors.emailAlreadyExists && <Error>ten email jest już zajęty</Error>}
-				{errors.emailWrongSyntax && <Error>email powinien zawierać znak @ i kończyć się znakami .com</Error>}
+				{errors.emailWrongSyntax && <Error>email powinien zawierać znak @ i kończyć się znakami .com lub .pl</Error>}
 				<Input type='text' placeholder='hasło' onChange={e => onChangePasswordHandler(e)} required />
-				{errors.passwordTooShort && <Error>hasło powinno posiadać conajmniej 6 znaków</Error>}
-				{errors.passwordNeedsOneNumber && <Error>hasło powinno zawierać przynajmniej 1 literę</Error>}
+				{errors.passwordTooShort && <Error>hasło powinno posiadać co najmniej 6 znaków</Error>}
+				{errors.passwordNeedsOneNumber && <Error>hasło powinno zawierać przynajmniej 1 cyfrę</Error>}
 				<MyButton type='submit' variant={'contained'} color={'primary'}>
 					Zarejestruj się
 				</MyButton>
