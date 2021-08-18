@@ -20,7 +20,7 @@ const CharacterList = () => {
 	const page = useSelector(state => state.characterList.page)
 
 	const [filterSelectStatus, setFilterSelectStatus] = useState('')
-	const [switchChecked, setSwitchChecked] = useState(false)
+	const [filterSwitchChecked, setFilterSwitchChecked] = useState(false)
 	const { data, isLoading, error } = useFetch(
 		`https://rickandmortyapi.com/api/character/?page=${page}&status=${filterSelectStatus}`
 	)
@@ -39,7 +39,7 @@ const CharacterList = () => {
 	}
 
 	const handleFilterSwitch = () => {
-		setSwitchChecked(prev => !prev)
+		setFilterSwitchChecked(prev => !prev)
 	}
 
 	return (
@@ -53,7 +53,7 @@ const CharacterList = () => {
 				handleFilterSelect={handleFilterSelect}
 				filterSelectStatus={filterSelectStatus}
 				handleFilterSwitch={handleFilterSwitch}
-				switchChecked={switchChecked}
+				switchChecked={filterSwitchChecked}
 				nextButtonText={nextButtonText}
 				previousButtonText={previousButtonText}
 				noPageAvailableButtonText={noPageAvailableButtonText}
@@ -63,7 +63,7 @@ const CharacterList = () => {
 					{data &&
 						data.results
 							.concat()
-							.sort((a, b) => (switchChecked ? (a.name < b.name ? 1 : -1) : a.name > b.name ? 1 : -1))
+							.sort((a, b) => (filterSwitchChecked ? (a.name < b.name ? 1 : -1) : a.name > b.name ? 1 : -1))
 							.map(card => {
 								const { name, status, species, image, id } = card
 

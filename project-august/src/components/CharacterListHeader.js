@@ -38,8 +38,8 @@ const CharacterListHeader = ({
 	isLoading,
 	handleFilterSelect,
 	filterSelectStatus,
+	filterSwitchChecked,
 	handleFilterSwitch,
-	switchChecked,
 	nextButtonText,
 	previousButtonText,
 	noPageAvailableButtonText,
@@ -70,7 +70,7 @@ const CharacterListHeader = ({
 							</PreviousButton>
 							<FilterContainer>
 								<FilterSelect handleFilterSelect={handleFilterSelect} filterSelectStatus={filterSelectStatus} />
-								<FilterSwitch handleFilterSwitch={handleFilterSwitch} switchChecked={switchChecked} />
+								<FilterSwitch handleFilterSwitch={handleFilterSwitch} switchChecked={filterSwitchChecked} />
 							</FilterContainer>
 							<NextButton
 								onClick={() => handleChangePage('next')}
