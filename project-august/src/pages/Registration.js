@@ -1,12 +1,15 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSnackbar } from '../redux/ducks/snackbar'
 import { addUser } from '../redux/ducks/registration'
 import styled from 'styled-components'
-import { Button } from '@material-ui/core'
+import { Button, Typography } from '@material-ui/core'
+
+import Logo from '../components/Logo'
 
 const FormContainer = styled.form`
-	max-width: 35%;
+	max-width: 30%;
 	display: flex;
 	flex-direction: column;
 	margin: 2rem auto;
@@ -17,16 +20,21 @@ const Input = styled.input`
 	margin: 20px 30px 5px 30px;
 	font-size: 1rem;
 `
-
 const Error = styled.p`
 	color: red;
 	font-size: 0.6rem;
 	text-align: left;
 	margin: 0px 30px;
 `
-
 const MyButton = styled(Button)`
 	margin-top: 30px;
+`
+const LogoContainer = styled.div`
+	text-align: center;
+`
+const MyLink = styled(Link)`
+	text-decoration: none;
+	color: red;
 `
 
 const Registration = () => {
@@ -73,8 +81,6 @@ const Registration = () => {
 		}
 	}
 
-	// console.log('Stan : ', users)
-
 	const onChangeFirstNameHandler = e => {
 		setData({ ...data, firstName: e.target.value })
 		setErrors({ ...errors, firstNameTooShort: e.target.value.length < 3 })
@@ -84,9 +90,8 @@ const Registration = () => {
 		setData({ ...data, lastName: e.target.value })
 		setErrors({ ...errors, lastNameTooShort: e.target.value.length < 3 })
 	}
+
 	const onChangeEmailHandler = e => {
-		console.log('.pl : ', e.target.value.lastIndexOf('.pl'))
-		console.log('.com : ', e.target.value.lastIndexOf('.com'))
 		setData({ ...data, email: e.target.value })
 		setErrors({
 			...errors,
@@ -96,10 +101,6 @@ const Registration = () => {
 				e.target.value.indexOf('@') === -1 ||
 				(e.target.value.lastIndexOf('.com') === -1 && e.target.value.lastIndexOf('.pl') === -1),
 		})
-
-		// this.state.email.indexOf('@') !== -1 &&
-		// this.state.email.length > 1 &&
-		// this.state.email.lastIndexOf('.com') !== -1
 	}
 
 	const onChangePasswordHandler = e => {
@@ -123,6 +124,9 @@ const Registration = () => {
 	return (
 		<div>
 			<FormContainer onSubmit={onSubmitHandler}>
+				<LogoContainer>
+					<Logo />
+				</LogoContainer>
 				<Input type='text' placeholder='imię' onChange={e => onChangeFirstNameHandler(e)} required />
 				{errors.firstNameTooShort && <Error>imię musi posiadać co najmniej 3 znaki</Error>}
 				<Input type='text' placeholder='nazwisko' onChange={e => onChangeLastNameHandler(e)} required />
@@ -138,6 +142,9 @@ const Registration = () => {
 					Zarejestruj się
 				</MyButton>
 			</FormContainer>
+			<Typography align='center'>
+				Masz już konto? <MyLink to={'/login'}>Zaloguj się</MyLink>
+			</Typography>
 		</div>
 	)
 }
