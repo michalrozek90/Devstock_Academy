@@ -19,23 +19,16 @@ const CharacterList = () => {
 	const dispatch = useDispatch()
 	const page = useSelector(state => state.characterList.page)
 
-	console.log(page)
-	// const [page, setPage] = useState(1)
 	const [filterSelectStatus, setFilterSelectStatus] = useState('')
 	const [switchChecked, setSwitchChecked] = useState(false)
 	const { data, isLoading, error } = useFetch(
 		`https://rickandmortyapi.com/api/character/?page=${page}&status=${filterSelectStatus}`
 	)
 
-	const handlePage = async e => {
-		const { outerText } = e.target
-
-		if (switchChecked) {
-			handleFilterSwitch()
-		}
-		if (outerText === previousButtonText.toUpperCase()) {
+	const handleChangePage = variant => {
+		if (variant === 'prev') {
 			dispatch(decrementPage())
-		} else if (outerText === nextButtonText.toUpperCase()) {
+		} else {
 			dispatch(incrementPage())
 		}
 	}
@@ -60,7 +53,7 @@ const CharacterList = () => {
 				error={error}
 				data={data}
 				page={page}
-				handlePage={handlePage}
+				handleChangePage={handleChangePage}
 				isLoading={isLoading}
 				handleFilterSelect={handleFilterSelect}
 				filterSelectStatus={filterSelectStatus}
@@ -73,15 +66,18 @@ const CharacterList = () => {
 			<CardsContainer>
 				<Grid container spacing={4}>
 					{data &&
-						data.results.map(card => {
-							const { name, status, species, image, id } = card
+						data.results
+							.concat()
+							.sort((a, b) => (switchChecked ? (a.name < b.name ? 1 : -1) : a.name > b.name ? 1 : -1))
+							.map(card => {
+								const { name, status, species, image, id } = card
 
-							return (
-								<Grid item xs={12} sm={6} md={3} lg={2} xl={2} key={id}>
-									<CharacterCard name={name} status={status} species={species} img={image} id={id} key={id} />
-								</Grid>
-							)
-						})}
+								return (
+									<Grid item xs={12} sm={6} md={3} lg={2} xl={2} key={id}>
+										<CharacterCard name={name} status={status} species={species} img={image} id={id} key={id} />
+									</Grid>
+								)
+							})}
 				</Grid>
 			</CardsContainer>
 		</div>

@@ -34,7 +34,7 @@ const CharacterListHeader = ({
 	error,
 	data,
 	page,
-	handlePage,
+	handleChangePage,
 	isLoading,
 	handleFilterSelect,
 	filterSelectStatus,
@@ -62,7 +62,7 @@ const CharacterListHeader = ({
 					<div>
 						<div>
 							<PreviousButton
-								onClick={handlePage}
+								onClick={() => handleChangePage('prev')}
 								variant={'outlined'}
 								disabled={data.info.prev === null || isLoading ? true : false}
 								color={'primary'}>
@@ -73,7 +73,7 @@ const CharacterListHeader = ({
 								<FilterSwitch handleFilterSwitch={handleFilterSwitch} switchChecked={switchChecked} />
 							</FilterContainer>
 							<NextButton
-								onClick={handlePage}
+								onClick={() => handleChangePage('next')}
 								variant={'outlined'}
 								disabled={data.info.next === null || isLoading ? true : false}
 								color={'secondary'}>
