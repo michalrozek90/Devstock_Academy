@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { Button, FormControl, OutlinedInput, Typography } from '@material-ui/core'
 
@@ -11,7 +12,6 @@ const HeaderContainer = styled.div`
 	background-size: cover;
 	background-repeat: no-repeat;
 `
-
 const FormContainer = styled.div`
 	& {
 		display: flex;
@@ -22,7 +22,6 @@ const FormContainer = styled.div`
 		background-color: rgba(0, 0, 0, 0.3);
 	}
 `
-
 const Box = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -44,7 +43,9 @@ const MyInput = styled(OutlinedInput)`
 	height: 3rem;
 	margin: 1rem;
 `
-
+const MyLink = styled(Link)`
+	text-decoration: none;
+`
 const Header = () => {
 	return (
 		<HeaderContainer>
@@ -57,10 +58,11 @@ const Header = () => {
 						<Title variant={'h5'}>Zasubskrybuj aby otrzymywać najnowsze informacje na bieżąco</Title>
 						<MyContainer>
 							<MyInput placeholder={'Wprowadź email'} color={'secondary'}></MyInput>
-
-							<Button variant={'contained'} color={'secondary'} style={{ height: '3rem' }}>
-								Subskrybuj teraz!
-							</Button>
+							<MyLink to='/registration'>
+								<Button variant={'contained'} color={'secondary'} style={{ height: '3rem' }}>
+									Subskrybuj teraz!
+								</Button>
+							</MyLink>
 						</MyContainer>
 					</Box>
 				</FormControl>

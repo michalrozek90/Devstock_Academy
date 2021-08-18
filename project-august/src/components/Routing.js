@@ -9,6 +9,7 @@ import CharacterList from '../pages/CharacterList'
 import Login from '../pages/Login'
 import Registration from '../pages/Registration'
 import CharacterDetails from '../pages/CharacterDetails'
+import ErrorPage from '../pages/ErrorPage'
 import userInfo from '../staticData/userInfo'
 
 const Routing = () => {
@@ -23,6 +24,7 @@ const Routing = () => {
 				<Route path='/character-list/:name/:id' children={<CharacterDetails />} />
 				<Route path='/login' component={Login} />
 				<Route path='/registration' component={Registration} />
+				<Route component={ErrorPage} />
 			</Switch>
 		</>
 	)

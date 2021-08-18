@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Prompt } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSnackbar } from '../redux/ducks/snackbar'
 import { addUser } from '../redux/ducks/registration'
@@ -42,6 +42,9 @@ const Registration = () => {
 	const users = useSelector(state => state.registration.usersDatabase)
 
 	const [data, setData] = useState({ firstName: null, lastName: null, email: null, password: null })
+
+	const { firstName, lastName, email, password } = data
+
 	const [errors, setErrors] = useState({
 		firstNameTooShort: false,
 		lastNameTooShort: false,
@@ -56,15 +59,14 @@ const Registration = () => {
 		e.preventDefault()
 
 		for (let user of users) {
-			if (user.email === data.email) {
+			if (user.email === email) {
 				setErrors({ ...errors, emailAlreadyExists: true })
-				dispatch(setSnackbar(true, 'error', 'error', 'Wprowadź inny adres e-mail'))
-				return
+				return dispatch(setSnackbar(true, 'error', 'error', 'Wprowadź inny adres e-mail'))
 			}
 		}
 		setErrors({ ...errors, emailAlreadyExists: false })
 
-		if (!passwordIncludesNumber(data.password)) {
+		if (!passwordIncludesNumber(password)) {
 			setErrors({ ...errors, passwordNeedsOneNumber: true })
 			return
 		}
@@ -141,6 +143,10 @@ const Registration = () => {
 				<MyButton type='submit' variant={'contained'} color={'primary'}>
 					Zarejestruj się
 				</MyButton>
+				<Prompt
+					when={!!firstName || !!lastName || !!email || !!password}
+					message='Niektórze pola formularza są wypełnione. Jeśli przejdziesz dalej, utracisz te dane. Czy kontynuować?'
+				/>
 			</FormContainer>
 			<Typography align='center'>
 				Masz już konto? <MyLink to={'/login'}>Zaloguj się</MyLink>
