@@ -40,11 +40,6 @@ const CharacterList = () => {
 
 	const handleFilterSwitch = () => {
 		setSwitchChecked(prev => !prev)
-		if (switchChecked) {
-			data.results.sort((a, b) => (a.name > b.name ? 1 : -1))
-		} else {
-			data.results.sort((a, b) => (a.name < b.name ? 1 : -1))
-		}
 	}
 
 	return (
