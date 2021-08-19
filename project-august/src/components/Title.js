@@ -5,7 +5,7 @@ const TitleContainer = styled.div`
 	width: 100%;
 `
 
-const MyTitle = styled(Typography)`
+const CustomTitle = styled(Typography)`
 	font-family: 'Patrick Hand';
 	text-transform: uppercase;
 	text-align: center;
@@ -15,7 +15,7 @@ const MyTitle = styled(Typography)`
 const Title = ({ title }) => {
 	return (
 		<TitleContainer>
-			<MyTitle variant='h4'>{title}</MyTitle>
+			<CustomTitle variant='h4'>{title}</CustomTitle>
 		</TitleContainer>
 	)
 }

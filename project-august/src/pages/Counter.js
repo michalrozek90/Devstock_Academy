@@ -14,7 +14,7 @@ const MainContainer = styled.div`
 const Result = styled.h2`
 	color: green;
 `
-const MyButton = styled(Button)`
+const CustomButton = styled(Button)`
 	margin: 1rem;
 `
 
@@ -27,15 +27,15 @@ const Counter = () => {
 			<Title title='Licznik'>Licznik</Title>
 			<MainContainer>
 				{count % 5 === 0 && count !== 0 ? <Result>{count}</Result> : <h2>{count}</h2>}
-				<MyButton variant='outlined' color='primary' onClick={() => dispatch(decrement())}>
+				<CustomButton variant='outlined' color='primary' onClick={() => dispatch(decrement())}>
 					Zmniejsz licznik
-				</MyButton>
-				<MyButton variant='contained' color='secondary' onClick={() => dispatch(resetCounter())}>
+				</CustomButton>
+				<CustomButton variant='contained' color='secondary' onClick={() => dispatch(resetCounter())}>
 					Resetuj
-				</MyButton>
-				<MyButton variant='outlined' color='primary' onClick={() => dispatch(increment())}>
+				</CustomButton>
+				<CustomButton variant='outlined' color='primary' onClick={() => dispatch(increment())}>
 					Zwiększ licznik
-				</MyButton>
+				</CustomButton>
 			</MainContainer>
 		</>
 	)

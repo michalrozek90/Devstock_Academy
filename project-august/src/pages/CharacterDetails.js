@@ -35,7 +35,7 @@ const DataContainer = styled(Container)`
 	top: 20%;
 	left: 5%;
 `
-const MyLink = styled(Link)`
+const CustomLink = styled(Link)`
 	text-decoration: none;
 	margin-top: 22rem;
 `
@@ -64,11 +64,11 @@ const CharacterDetails = () => {
 						GATUNEK - {data.species}
 					</Typography>
 					<ImageContainer />
-					<MyLink to='/character-list'>
+					<CustomLink to='/character-list'>
 						<Button startIcon={<NavigateBeforeIcon />} color={'primary'} variant={'contained'}>
 							{`Powrót do listy postaci (strona nr ${page}) `}
 						</Button>
-					</MyLink>
+					</CustomLink>
 				</DataContainer>
 			)}
 		</MainContainer>

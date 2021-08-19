@@ -26,13 +26,13 @@ const Error = styled.p`
 	text-align: left;
 	margin: 0px 30px;
 `
-const MyButton = styled(Button)`
+const CustomButton = styled(Button)`
 	margin-top: 30px;
 `
 const LogoContainer = styled.div`
 	text-align: center;
 `
-const MyLink = styled(Link)`
+const CustomLink = styled(Link)`
 	text-decoration: none;
 	color: red;
 `
@@ -127,10 +127,11 @@ const Registration = () => {
 	}
 
 	const isFormEmpty = () => {
-		if ((firstName || lastName || email || password) === ('' || null)) {
-			return true
+		if ((firstName || lastName || email || password) !== ('' || null)) {
+			setPrompt(true)
+		} else {
+			setPrompt(false)
 		}
-		return false
 	}
 
 	return (
@@ -150,16 +151,16 @@ const Registration = () => {
 				<Input type='password' placeholder='hasło' onChange={e => onChangePasswordHandler(e)} required />
 				{errors.passwordTooShort && <Error>hasło powinno posiadać co najmniej 6 znaków</Error>}
 				{errors.passwordNeedsOneNumber && <Error>hasło powinno zawierać przynajmniej 1 cyfrę</Error>}
-				<MyButton type='submit' variant={'contained'} color={'primary'}>
+				<CustomButton type='submit' variant={'contained'} color={'primary'}>
 					Zarejestruj się
-				</MyButton>
+				</CustomButton>
 				<Prompt
-					when={isFormEmpty}
+					when={prompt}
 					message='Niektórze pola formularza są wypełnione. Jeśli przejdziesz dalej, utracisz te dane. Czy kontynuować?'
 				/>
 			</FormContainer>
 			<Typography align='center'>
-				Masz już konto? <MyLink to={'/login'}>Zaloguj się</MyLink>
+				Masz już konto? <CustomLink to={'/login'}>Zaloguj się</CustomLink>
 			</Typography>
 		</div>
 	)

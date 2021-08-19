@@ -27,11 +27,11 @@ const MainContainer = styled.div`
 	align-items: center;
 	text-align: center;
 `
-const MyInput = styled(TextField)`
+const CustomInput = styled(TextField)`
 	margin: 10px;
 	padding: 0 10px;
 `
-const MyButton = styled(Button)`
+const CustomButton = styled(Button)`
 	width: 12%;
 	margin: 1rem;
 `
@@ -123,12 +123,12 @@ const Stopwatch = () => {
 
 	const inputsSetCount = stopwatchInputsSetCount.map(item => {
 		const { placeholder, type } = item
-		return <MyInput placeholder={placeholder} type={type} onChange={handleCount} key={placeholder} />
+		return <CustomInput placeholder={placeholder} type={type} onChange={handleCount} key={placeholder} />
 	})
 
 	const inputsSetStart = stopwatchInputsSetStart.map(item => {
 		const { placeholder, type } = item
-		return <MyInput placeholder={placeholder} type={type} onChange={handleStart} key={placeholder} />
+		return <CustomInput placeholder={placeholder} type={type} onChange={handleStart} key={placeholder} />
 	})
 
 	return (
@@ -142,12 +142,12 @@ const Stopwatch = () => {
 					<span>{miliSeconds >= 10 ? miliSeconds : '0' + miliSeconds}</span>
 				</ResultContainer>
 				<ButtonsContainer>
-					<MyButton variant='contained' color='primary' onClick={handleClick}>
+					<CustomButton variant='contained' color='primary' onClick={handleClick}>
 						{!active ? 'Start' : 'Stop'}
-					</MyButton>
-					<MyButton variant='contained' color='secondary' onClick={onReset}>
+					</CustomButton>
+					<CustomButton variant='contained' color='secondary' onClick={onReset}>
 						Reset
-					</MyButton>
+					</CustomButton>
 				</ButtonsContainer>
 				<div>{inputsSetCount}</div>
 				<div>{inputsSetStart}</div>

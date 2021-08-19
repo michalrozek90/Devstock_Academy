@@ -31,18 +31,18 @@ const Title = styled(Typography)`
 	color: white;
 	margin-bottom: 1rem;
 `
-const MyContainer = styled.div`
+const CustomContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
 `
-const MyInput = styled(OutlinedInput)`
+const CustomInput = styled(OutlinedInput)`
 	color: white;
 	width: 50%;
 	height: 3rem;
 	margin: 1rem;
 `
-const MyLink = styled(Link)`
+const CustomLink = styled(Link)`
 	text-decoration: none;
 `
 
@@ -56,14 +56,14 @@ const Header = () => {
 							Dołącz do nas!
 						</Title>
 						<Title variant={'h5'}>Zasubskrybuj aby otrzymywać najnowsze informacje na bieżąco</Title>
-						<MyContainer>
-							<MyInput placeholder={'Wprowadź email'} color={'secondary'}></MyInput>
-							<MyLink to='/registration'>
+						<CustomContainer>
+							<CustomInput placeholder={'Wprowadź email'} color={'secondary'}></CustomInput>
+							<CustomLink to='/registration'>
 								<Button variant={'contained'} color={'secondary'} style={{ height: '3rem' }}>
 									Subskrybuj teraz!
 								</Button>
-							</MyLink>
-						</MyContainer>
+							</CustomLink>
+						</CustomContainer>
 					</Box>
 				</FormControl>
 			</FormContainer>

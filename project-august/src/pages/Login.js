@@ -19,18 +19,19 @@ const Input = styled.input`
 	margin: 10px 20px;
 	font-size: 1rem;
 `
-const MyButton = styled(Button)`
+const CustomButton = styled(Button)`
 	margin-top: 30px;
 `
 const LogoContainer = styled.div`
 	text-align: center;
 `
-const MyLink = styled(Link)`
+const CustomLink = styled(Link)`
 	text-decoration: none;
 	color: red;
 `
 
 const Login = () => {
+	let history = useHistory()
 	const dispatch = useDispatch()
 	const users = useSelector(state => state.registration.usersDatabase)
 
@@ -45,7 +46,9 @@ const Login = () => {
 				console.log('user email : ', user.email)
 				console.log('user password : ', user.password)
 				if (user.email === email && user.password === password) {
-					return dispatch(setSnackbar(true, 'success', 'success', 'Logowanie pomyślne!'))
+					dispatch(setSnackbar(true, 'success', 'success', 'Logowanie pomyślne!'))
+					history.push('/success-login')
+					return
 				}
 			}
 		}
@@ -67,12 +70,12 @@ const Login = () => {
 				</LogoContainer>
 				<Input type='text' placeholder='e-mail' onChange={e => onChangeEmailHandler(e)} required />
 				<Input type='password' placeholder='hasło' onChange={e => onChangePasswordHandler(e)} required />
-				<MyButton type='submit' variant={'contained'} color={'primary'}>
+				<CustomButton type='submit' variant={'contained'} color={'primary'}>
 					Zaloguj się
-				</MyButton>
+				</CustomButton>
 			</FormContainer>
 			<Typography align='center'>
-				Nie masz jeszcze konta? <MyLink to={'/registration'}>Zarejestruj się</MyLink>
+				Nie masz jeszcze konta? <CustomLink to={'/registration'}>Zarejestruj się</CustomLink>
 			</Typography>
 		</div>
 	)
