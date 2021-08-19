@@ -1,4 +1,4 @@
-import { Button } from '@material-ui/core'
+import { Button, Typography } from '@material-ui/core'
 import styled from 'styled-components'
 
 import FilterSelect from '../components/FilterSelect'
@@ -6,28 +6,37 @@ import FilterSwitch from '../components/FilterSwitch'
 
 const Header = styled.div`
 	position: relative;
-	display: flex;
-	align-items: center;
 	height: 10vh;
-	background-color: lightgoldenrodyellow;
+	width: 100%;
+	display: flex;
+	background-color: #f2f2f2;
 `
-
-const PreviousButton = styled(Button)`
+const InfoContainer = styled(Typography)`
 	position: absolute;
-	bottom: 5%;
-	left: 25%;
+	top: 50%;
+	left: 5%;
+	transform: translateY(-50%);
+`
+const ButtonContainer = styled.div`
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+`
+const PreviousButton = styled(Button)`
+	width: 6rem;
+	margin-right: 2rem;
 `
 
 const NextButton = styled(Button)`
-	position: absolute;
-	bottom: 5%;
-	left: 40%;
+	width: 6rem;
 `
 const FilterContainer = styled.div`
-	position: absolute;
-	top: 0;
-	right: 0;
 	display: flex;
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform: translateY(-50%);
 `
 
 const CharacterListHeader = ({
@@ -46,41 +55,39 @@ const CharacterListHeader = ({
 }) => {
 	return (
 		<Header>
-			<div>
+			<InfoContainer>
 				{error && <h1>{error}</h1>}
 				{data && (
 					<div>
-						<div>Ogólna liczba postaci: {data.info.count}</div>
-						<div>
+						<Typography gutterBottom>Ogólna liczba postaci: {data.info.count}</Typography>
+						<Typography>
 							Obecna strona: {page} z {data.info.pages}
-						</div>
+						</Typography>
 					</div>
 				)}
-			</div>
+			</InfoContainer>
 			{data && (
 				<div>
-					<div>
-						<div>
-							<PreviousButton
-								onClick={() => handleChangePage('prev')}
-								variant={'outlined'}
-								disabled={data.info.prev === null || isLoading ? true : false}
-								color={'primary'}>
-								{data.info.prev === null ? noPageAvailableButtonText : previousButtonText}
-							</PreviousButton>
-							<FilterContainer>
-								<FilterSelect handleFilterSelect={handleFilterSelect} filterSelectStatus={filterSelectStatus} />
-								<FilterSwitch handleFilterSwitch={handleFilterSwitch} switchChecked={filterSwitchChecked} />
-							</FilterContainer>
-							<NextButton
-								onClick={() => handleChangePage('next')}
-								variant={'outlined'}
-								disabled={data.info.next === null || isLoading ? true : false}
-								color={'secondary'}>
-								{data.info.next === null ? noPageAvailableButtonText : nextButtonText}
-							</NextButton>
-						</div>
-					</div>
+					<ButtonContainer>
+						<PreviousButton
+							onClick={() => handleChangePage('prev')}
+							variant={'outlined'}
+							disabled={data.info.prev === null || isLoading ? true : false}
+							color={'primary'}>
+							{data.info.prev === null ? noPageAvailableButtonText : previousButtonText}
+						</PreviousButton>
+						<NextButton
+							onClick={() => handleChangePage('next')}
+							variant={'outlined'}
+							disabled={data.info.next === null || isLoading ? true : false}
+							color={'secondary'}>
+							{data.info.next === null ? noPageAvailableButtonText : nextButtonText}
+						</NextButton>
+					</ButtonContainer>
+					<FilterContainer>
+						<FilterSelect handleFilterSelect={handleFilterSelect} filterSelectStatus={filterSelectStatus} />
+						<FilterSwitch handleFilterSwitch={handleFilterSwitch} switchChecked={filterSwitchChecked} />
+					</FilterContainer>
 				</div>
 			)}
 			{isLoading && <p>Loading...</p>}

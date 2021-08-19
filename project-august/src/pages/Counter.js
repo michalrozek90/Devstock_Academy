@@ -8,7 +8,7 @@ import Title from '../components/Title'
 
 const MainContainer = styled.div`
 	text-align: center;
-	margin-top: 2rem;
+	transform: translateY(20%);
 `
 
 const Result = styled.h2`

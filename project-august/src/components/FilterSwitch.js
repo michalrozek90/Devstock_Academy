@@ -2,9 +2,7 @@ import styled from 'styled-components'
 import { FormControl, FormControlLabel, FormGroup, FormLabel, Switch } from '@material-ui/core'
 
 const SwitchContainer = styled.div`
-	/* position: absolute; */
-	bottom: 0;
-	right: 0;
+	margin: 0 3rem;
 `
 
 const FilterSelect = ({ handleFilterSwitch, switchChecked }) => {

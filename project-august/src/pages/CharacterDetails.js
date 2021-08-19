@@ -10,23 +10,23 @@ import charDetails from '../img/charDetails.jpg'
 
 const MainContainer = styled.div`
 	position: relative;
-	top: 0;
-	height: 90vh;
+	height: 100vh;
 	width: 100%;
 	background-image: url(${charDetails});
 	background-size: cover;
-	/* background-position: center; */
 	background-repeat: no-repeat;
 	color: white;
 `
 
 const ImageContainer = styled.div`
 	position: absolute;
-	top: 25%;
-	left: 50%;
-	height: 400px;
-	width: 200px;
-	/* border: 2px solid yellow; */
+	top: 2%;
+	right: 2%;
+`
+
+const CharacterImage = styled.img`
+	border-radius: 35%;
+	border: 10px solid gold;
 `
 
 const DataContainer = styled(Container)`
@@ -37,7 +37,9 @@ const DataContainer = styled(Container)`
 `
 const CustomLink = styled(Link)`
 	text-decoration: none;
-	margin-top: 22rem;
+`
+const CustomButton = styled(Button)`
+	margin-bottom: 5rem;
 `
 
 const CharacterDetails = () => {
@@ -53,23 +55,27 @@ const CharacterDetails = () => {
 				{error && <h1>{error}</h1>}
 			</Container>
 			{data && (
-				<DataContainer>
-					<Typography variant='h4' gutterBottom>
-						DANE POSTACI:
-					</Typography>
-					<Typography variant='h5'>NUMER ID - {id}</Typography>
-					<Typography variant='h5'>IMIĘ - {name}</Typography>
-					<Typography variant='h5'>STATUS - {data.status}</Typography>
-					<Typography variant='h5' gutterBottom>
-						GATUNEK - {data.species}
-					</Typography>
-					<ImageContainer />
-					<CustomLink to='/character-list'>
-						<Button startIcon={<NavigateBeforeIcon />} color={'primary'} variant={'contained'}>
-							{`Powrót do listy postaci (strona nr ${page}) `}
-						</Button>
-					</CustomLink>
-				</DataContainer>
+				<>
+					<DataContainer>
+						<CustomLink to='/character-list'>
+							<CustomButton startIcon={<NavigateBeforeIcon />} color={'primary'} variant={'contained'}>
+								{`Powrót do listy postaci (strona nr ${page}) `}
+							</CustomButton>
+						</CustomLink>
+						<Typography variant='h4' gutterBottom>
+							DANE POSTACI:
+						</Typography>
+						<Typography variant='h5'>NUMER ID - {id}</Typography>
+						<Typography variant='h5'>IMIĘ - {name}</Typography>
+						<Typography variant='h5'>STATUS - {data.status}</Typography>
+						<Typography variant='h5' gutterBottom>
+							GATUNEK - {data.species}
+						</Typography>
+					</DataContainer>
+					<ImageContainer>
+						<CharacterImage src={data.image} alt={data.name} />
+					</ImageContainer>
+				</>
 			)}
 		</MainContainer>
 	)

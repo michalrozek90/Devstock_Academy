@@ -6,7 +6,6 @@ const TitleContainer = styled.div`
 `
 
 const CustomTitle = styled(Typography)`
-	font-family: 'Patrick Hand';
 	text-transform: uppercase;
 	text-align: center;
 	margin: 2rem;

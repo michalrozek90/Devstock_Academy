@@ -10,6 +10,9 @@ import Logo from '../components/Logo'
 
 const FormContainer = styled.form`
 	max-width: 30%;
+	@media (max-width: 767px) {
+		max-width: 80%;
+	}
 	display: flex;
 	flex-direction: column;
 	margin: 2rem auto;

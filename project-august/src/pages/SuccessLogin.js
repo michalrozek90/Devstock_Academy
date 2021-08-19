@@ -1,5 +1,5 @@
 const SuccessLogin = () => {
-	return <div>Zalogowano pomyślnie!</div>
+	return <div>panel użytkownika</div>
 }
 
 export default SuccessLogin
