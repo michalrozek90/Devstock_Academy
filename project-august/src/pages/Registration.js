@@ -44,7 +44,6 @@ const Registration = () => {
 	const dispatch = useDispatch()
 	const users = useSelector(state => state.registration.usersDatabase)
 
-	// const [prompt, setPrompt] = useState(false)
 	const [data, setData] = useState({ firstName: null, lastName: null, email: null, password: null })
 
 	const { firstName, lastName, email, password } = data
