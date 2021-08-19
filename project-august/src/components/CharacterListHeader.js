@@ -11,7 +11,7 @@ const Header = styled.div`
 	display: flex;
 	background-color: #f2f2f2;
 `
-const InfoContainer = styled(Typography)`
+const InfoContainer = styled.div`
 	position: absolute;
 	top: 50%;
 	left: 5%;
@@ -90,7 +90,7 @@ const CharacterListHeader = ({
 					</FilterContainer>
 				</div>
 			)}
-			{isLoading && <p>Loading...</p>}
+			{isLoading && <span>Loading...</span>}
 		</Header>
 	)
 }

@@ -38,6 +38,7 @@ const CustomContainer = styled.div`
 `
 const CustomInput = styled(OutlinedInput)`
 	color: white;
+	background-color: rgba(0, 0, 0, 0.3);
 	width: 50%;
 	height: 3rem;
 	margin: 1rem;

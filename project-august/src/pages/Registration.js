@@ -44,7 +44,7 @@ const Registration = () => {
 	const dispatch = useDispatch()
 	const users = useSelector(state => state.registration.usersDatabase)
 
-	const [prompt, setPrompt] = useState(false)
+	// const [prompt, setPrompt] = useState(false)
 	const [data, setData] = useState({ firstName: null, lastName: null, email: null, password: null })
 
 	const { firstName, lastName, email, password } = data
@@ -84,12 +84,13 @@ const Registration = () => {
 		) {
 			dispatch(addUser(data))
 			dispatch(setSnackbar(true, 'success', 'success', 'Zarejestrowano poprawnie!'))
+
+			setData({ firstName: null, lastName: null, email: null, password: null })
 			e.target.reset()
 		}
 	}
 
 	const onChangeFirstNameHandler = e => {
-		setPrompt(true)
 		setData({ ...data, firstName: e.target.value })
 		setErrors({ ...errors, firstNameTooShort: e.target.value.length < 3 })
 	}
@@ -129,14 +130,6 @@ const Registration = () => {
 		return false
 	}
 
-	const isFormEmpty = () => {
-		if ((firstName || lastName || email || password) !== ('' || null)) {
-			setPrompt(true)
-		} else {
-			setPrompt(false)
-		}
-	}
-
 	return (
 		<div>
 			<FormContainer onSubmit={onSubmitHandler}>
@@ -158,7 +151,7 @@ const Registration = () => {
 					Zarejestruj się
 				</CustomButton>
 				<Prompt
-					when={prompt}
+					when={firstName?.length > 0 || lastName?.length > 0 || email?.length > 0 || password?.length > 0}
 					message='Niektórze pola formularza są wypełnione. Jeśli przejdziesz dalej, utracisz te dane. Czy kontynuować?'
 				/>
 			</FormContainer>

@@ -39,7 +39,8 @@ const useStyles = makeStyles({
 		textDecoration: 'none',
 	},
 	activeLink: {
-		// color: "green"
+		display: 'inline-block',
+		border: ' 2px solid green',
 	},
 })
 
